@@ -190,6 +190,11 @@ for aircraft in mission_data["assigned_fleet"]:
     leg_results = []
     mission_status = "PASS"
 
+    total_fuel_used = 0
+    total_time_hr = 0
+    total_distance_nm = 0
+    payload_delivered_kg = 0
+
     for delivery in deliveries:
 
         dest_key = delivery["destination"].lower()
@@ -201,6 +206,13 @@ for aircraft in mission_data["assigned_fleet"]:
             dest["coords"][0],
             dest["coords"][1]
         )
+
+        # Time Calc
+        delta_alt = dest["elevation_ft"] - current_origin["elevation_ft"]
+        climb_time = (delta_alt / ac["roc"]) / 60 if delta_alt > 0 and ac["roc"] > 0 else 0
+        cruise_time = distance_nm / ac["cruise"] if ac["cruise"] > 0 else 0
+        descent_time = abs(delta_alt / ac["roc"]) / 60 if ac["roc"] > 0 else 0
+        leg_time = climb_time + cruise_time + descent_time
 
         fuel_needed, fc, fru, fd = compute_leg_fuel(ac, current_origin, dest, distance_nm)
 
@@ -227,6 +239,7 @@ for aircraft in mission_data["assigned_fleet"]:
                     "reason": "Insufficient fuel for planned leg"
                 })
                 fuel_remaining -= alt_option["fuel_required"]
+                total_fuel_used += alt_option["fuel_required"] # Add alt fuel
                 break
             else:
                 leg_results.append({
@@ -238,6 +251,11 @@ for aircraft in mission_data["assigned_fleet"]:
         # Normal leg execution
         fuel_remaining -= fuel_needed
         payload_remaining -= delivery["weight_kg"]
+
+        total_fuel_used += fuel_needed
+        total_distance_nm += distance_nm
+        total_time_hr += leg_time
+        payload_delivered_kg += delivery["weight_kg"]
 
         leg = {
             "origin": current_origin,
@@ -278,10 +296,24 @@ for aircraft in mission_data["assigned_fleet"]:
 
     else:
         fuel_remaining -= fuel_rtb
+        
+        # Add stats for RTB
+        total_fuel_used += fuel_rtb
+        total_distance_nm += distance_nm
+        
+        delta_alt = origin["elevation_ft"] - current_origin["elevation_ft"]
+        climb_time = (delta_alt / ac["roc"]) / 60 if delta_alt > 0 and ac["roc"] > 0 else 0
+        cruise_time = distance_nm / ac["cruise"] if ac["cruise"] > 0 else 0
+        descent_time = abs(delta_alt / ac["roc"]) / 60 if ac["roc"] > 0 else 0
+        total_time_hr += (climb_time + cruise_time + descent_time)
 
     final_output["dynamic_mission_result"][ac_name] = {
         "mission_status": mission_status,
         "final_fuel_remaining": round(fuel_remaining, 2),
+        "total_fuel_used_kg": round(total_fuel_used, 2),
+        "total_time_hr": round(total_time_hr, 2),
+        "total_distance_nm": round(total_distance_nm, 2),
+        "total_payload_delivered_kg": payload_delivered_kg,
         "legs": leg_results
     }
 

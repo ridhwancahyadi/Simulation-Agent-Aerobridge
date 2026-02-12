@@ -1,57 +1,39 @@
 {
   "mission_id": "LOG-PAPUA-001",
-  "objective_engine_result": {
+  "objective_scores": {
     "Cessna 208b": {
-      "lambda_w": 0.95,
-      "minimum_margin": -0.2544,
-      "fuel_margin_ratio": 0.6823,
-      "total_weighted_score": 0.539,
-      "score_breakdown": [
-        {
-          "objective": "Delivery",
-          "weight": 0.5,
-          "raw_score": 0.95,
-          "weighted_score": 0.475
-        },
-        {
-          "objective": "Safety",
-          "weight": 0.3,
-          "raw_score": 0,
-          "weighted_score": 0.0
-        },
-        {
-          "objective": "Environmental",
-          "weight": 0.2,
-          "raw_score": 0.318,
-          "weighted_score": 0.064
-        }
-      ]
+      "weights": {
+        "delivery": 0.25,
+        "temporal": 0.2,
+        "fuel_efficiency": 0.2,
+        "environmental": 0.2,
+        "safety": 0.15
+      },
+      "components": {
+        "delivery": 0.8333,
+        "temporal": 1.0,
+        "fuel_efficiency": 0.8191,
+        "environmental": 0.6117,
+        "safety": 0
+      },
+      "final_score": 0.6945
     },
     "EC725 Caracal": {
-      "lambda_w": 0.682,
-      "minimum_margin": 0.039,
-      "fuel_margin_ratio": 0.1229,
-      "total_weighted_score": 0.528,
-      "score_breakdown": [
-        {
-          "objective": "Delivery",
-          "weight": 0.5,
-          "raw_score": 0.682,
-          "weighted_score": 0.341
-        },
-        {
-          "objective": "Safety",
-          "weight": 0.3,
-          "raw_score": 0.039,
-          "weighted_score": 0.012
-        },
-        {
-          "objective": "Environmental",
-          "weight": 0.2,
-          "raw_score": 0.877,
-          "weighted_score": 0.175
-        }
-      ]
+      "weights": {
+        "delivery": 0.25,
+        "temporal": 0.2,
+        "fuel_efficiency": 0.2,
+        "environmental": 0.2,
+        "safety": 0.15
+      },
+      "components": {
+        "delivery": 0.75,
+        "temporal": 1.0,
+        "fuel_efficiency": 0.6634,
+        "environmental": 0.5694,
+        "safety": 0.039
+      },
+      "final_score": 0.6399
     }
   }
 }

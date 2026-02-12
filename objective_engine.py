@@ -11,10 +11,6 @@ with open("payloads.json") as f:
     mission_data = json.load(f)
 
 
-# ============================================================
-# OBJECTIVE FORMULAS
-# ============================================================
-
 def compute_delivery_score(payload_delivered, payload_planned):
     if payload_planned <= 0:
         return 0
@@ -63,7 +59,7 @@ weights = {
     "safety": 0.15
 }
 
-for aircraft_name, mission_result in dynamic_data["mission_results"].items():
+for aircraft_name, mission_result in dynamic_data["dynamic_mission_result"].items():
 
     payload_delivered = mission_result.get("total_payload_delivered_kg", 0)
     total_fuel_used = mission_result.get("total_fuel_used_kg", 0)

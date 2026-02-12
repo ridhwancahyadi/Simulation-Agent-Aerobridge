@@ -4,6 +4,10 @@
     "Cessna 208b": {
       "mission_status": "FAIL_RETURN_BASE",
       "final_fuel_remaining": 279.18,
+      "total_fuel_used_kg": 220.82,
+      "total_time_hr": 1.32,
+      "total_distance_nm": 139.56,
+      "total_payload_delivered_kg": 1000,
       "legs": [
         {
           "from": "timika",
@@ -38,6 +42,10 @@
     "EC725 Caracal": {
       "mission_status": "FAIL_RETURN_BASE",
       "final_fuel_remaining": 543.36,
+      "total_fuel_used_kg": 456.64,
+      "total_time_hr": 0.67,
+      "total_distance_nm": 70.97,
+      "total_payload_delivered_kg": 900,
       "legs": [
         {
           "from": "timika",
