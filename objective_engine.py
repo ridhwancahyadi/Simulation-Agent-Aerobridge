@@ -1,10 +1,6 @@
 import json
 import math
 
-# ============================================================
-# LOAD REQUIRED DATA
-# ============================================================
-
 with open("dynamic_mission_output.json") as f:
     dynamic_data = json.load(f)
 
@@ -45,11 +41,6 @@ def compute_safety_score(min_margin_value):
         return 0
     return max(0, min_margin_value)
 
-
-# ============================================================
-# HYBRID AGGREGATION
-# ============================================================
-
 def compute_final_score(scores, weights):
 
     total = 0
@@ -57,11 +48,6 @@ def compute_final_score(scores, weights):
         total += weights.get(key, 0) * scores[key]
 
     return total
-
-
-# ============================================================
-# MAIN PROCESS
-# ============================================================
 
 final_output = {
     "mission_id": mission_data["mission_id"],
@@ -134,11 +120,6 @@ for aircraft_name, mission_result in dynamic_data["mission_results"].items():
         },
         "final_score": round(final_score, 4)
     }
-
-
-# ============================================================
-# SAVE OUTPUT
-# ============================================================
 
 with open("objective_engine_output.json", "w") as f:
     json.dump(final_output, f, indent=2)

@@ -3,10 +3,6 @@ import math
 from hard_feasibility_checks import FixedWingHardGate, RotaryWingHardGate
 from hard_feasibility_checks import haversine_nm
 
-# ============================================================
-# LOAD DATA
-# ============================================================
-
 with open("aircraft_parameters.json") as f:
     aircraft_data = json.load(f)
 
@@ -19,10 +15,6 @@ with open("payloads.json") as f:
 with open("alternate_airports.json") as f:
     alternate_data = json.load(f)
 
-
-# ============================================================
-# BUILD AIRCRAFT
-# ============================================================
 
 def build_aircraft(ac_name, ac_type):
 
@@ -67,11 +59,6 @@ def build_aircraft(ac_name, ac_type):
         "cg_current": 25
     }
 
-
-# ============================================================
-# FUEL CALCULATION (REALISTIC)
-# ============================================================
-
 def compute_leg_fuel(ac, origin, dest, distance_nm):
 
     cruise_speed = ac["cruise"]
@@ -100,10 +87,6 @@ def compute_leg_fuel(ac, origin, dest, distance_nm):
 
     return total, fuel_climb, fuel_cruise, fuel_descent
 
-
-# ============================================================
-# FIND NEAREST ALTERNATE
-# ============================================================
 
 def find_best_alternate(ac, evaluator, current_origin_key, current_origin,
                         fuel_remaining, reserve_fuel):
@@ -178,10 +161,6 @@ def find_best_alternate(ac, evaluator, current_origin_key, current_origin,
 
     return best_option
 
-
-# ============================================================
-# MAIN SIMULATION
-# ============================================================
 
 final_output = {
     "mission_id": mission_data["mission_id"],

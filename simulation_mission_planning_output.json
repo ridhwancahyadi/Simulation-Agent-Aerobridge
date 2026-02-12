@@ -1,0 +1,111 @@
+{
+  "mission_id": "LOG-PAPUA-001",
+  "route_planning": {
+    "Cessna 208b": [
+      {
+        "route_sequence": [
+          "ilaga",
+          "sinak",
+          "wamena"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_HARD_GATE",
+          "fuel_used": 107.82,
+          "time_hr": 0.668,
+          "distance_nm": 54.81,
+          "payload_delivered": 0,
+          "min_margin": 0.0131
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      },
+      {
+        "route_sequence": [
+          "ilaga",
+          "wamena",
+          "sinak"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_HARD_GATE",
+          "fuel_used": 107.82,
+          "time_hr": 0.668,
+          "distance_nm": 54.81,
+          "payload_delivered": 0,
+          "min_margin": 0.0131
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      },
+      {
+        "route_sequence": [
+          "sinak",
+          "ilaga",
+          "wamena"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_HARD_GATE",
+          "fuel_used": 125.32,
+          "time_hr": 0.759,
+          "distance_nm": 70.96,
+          "payload_delivered": 0,
+          "min_margin": 0.024
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      }
+    ],
+    "EC725 Caracal": [
+      {
+        "route_sequence": [
+          "ilaga",
+          "sinak",
+          "wamena"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_FUEL",
+          "fuel_used": 414.81,
+          "time_hr": 0.672,
+          "distance_nm": 70.97,
+          "payload_delivered": 900,
+          "min_margin": 0.083
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      },
+      {
+        "route_sequence": [
+          "ilaga",
+          "wamena",
+          "sinak"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_FUEL",
+          "fuel_used": 339.88,
+          "time_hr": 0.553,
+          "distance_nm": 54.81,
+          "payload_delivered": 400,
+          "min_margin": 0.083
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      },
+      {
+        "route_sequence": [
+          "sinak",
+          "ilaga",
+          "wamena"
+        ],
+        "simulation": {
+          "mission_status": "FAIL_HARD_GATE",
+          "fuel_used": 404.04,
+          "time_hr": 0.649,
+          "distance_nm": 70.96,
+          "payload_delivered": 0,
+          "min_margin": 0.132
+        },
+        "score_breakdown": null,
+        "final_score": 0
+      }
+    ]
+  }
+}

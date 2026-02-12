@@ -13,6 +13,7 @@ with open("payloads.json") as f:
 with open("alternate_airports.json") as f:
     alternate_data = json.load(f)
 
+
 OBJECTIVE_WEIGHTS = {
     "delivery": 0.30,
     "temporal": 0.20,
@@ -20,6 +21,7 @@ OBJECTIVE_WEIGHTS = {
     "environmental": 0.15,
     "safety": 0.15
 }
+
 
 def delivery_score(delivered, planned):
     return min(1, delivered / planned) if planned > 0 else 0
@@ -39,41 +41,39 @@ def safety_score(min_margin):
 def aggregate_score(scores):
     return sum(OBJECTIVE_WEIGHTS[k] * scores[k] for k in scores)
 
+
 def extract_min_margin(result):
 
     min_margin = float("inf")
 
-    for key, section in result.items():
+    for section in result.values():
 
         if not isinstance(section, dict):
             continue
 
-        if "details" not in section:
-            continue
+        # direct margin
+        if "margin" in section:
+            margin = section["margin"]
+            if isinstance(margin, (int, float)):
+                if margin < min_margin:
+                    min_margin = margin
 
-        details = section["details"]
+        # nested details
+        if "details" in section:
+            details = section["details"]
 
-        # runway margin
-        if "runway_margin_m" in details:
-            margin = details["runway_margin_m"]
-        elif "climb_margin" in details:
-            margin = details["climb_margin"]
-        elif "fuel_margin_kg" in details:
-            margin = details["fuel_margin_kg"]
-        elif "oge_margin_ratio" in details:
-            margin = details["oge_margin_ratio"]
-        else:
-            continue
+            for key in [
+                "climb_margin",
+                "oge_margin_ratio"
+            ]:
+                if key in details:
+                    margin = details[key]
+                    if margin < min_margin:
+                        min_margin = margin
 
-        if margin < min_margin:
-            min_margin = margin
+    return None if min_margin == float("inf") else min_margin
 
-    if min_margin == float("inf"):
-        return None
-
-    return min_margin
-
-def compute_environmental_risk(ac, origin, route_sequence):
+def compute_environmental_risk(ac, route_sequence, origin):
 
     total_risk = 0
     current = origin
@@ -94,19 +94,17 @@ def compute_environmental_risk(ac, origin, route_sequence):
         R_wind = wind_kt / ac["max_crosswind"] if ac["max_crosswind"] > 0 else 0
         R_terrain = dest["elevation_ft"] / 10000
 
-        leg_risk = 0.4 * R_da + 0.4 * R_wind + 0.2 * R_terrain
-        total_risk += leg_risk
-
+        total_risk += 0.4 * R_da + 0.4 * R_wind + 0.2 * R_terrain
         current = dest
 
     return total_risk / len(route_sequence) if route_sequence else 0
+
 
 def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, total_payload):
 
     origin = location_data["locations"][origin_key]
     fuel_remaining = initial_fuel
     payload_remaining = total_payload
-
     reserve_fuel = ac["fuel_flow"] * (ac["reserve_min"] / 60)
 
     current_origin = origin
@@ -133,8 +131,10 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
 
         fuel_needed, _, _, _ = compute_leg_fuel(ac, current_origin, dest, distance_nm)
 
-        # ---- ALTERNATE CHECK ----
+        # Alternate fuel
         alternates = alternate_data.get(dest_key, [])
+        fuel_alt = 0
+
         if alternates:
             alt_key = alternates[0]
             alt = location_data["locations"][alt_key]
@@ -145,8 +145,6 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
                 alt["coords"][1]
             )
             fuel_alt, _, _, _ = compute_leg_fuel(ac, dest, alt, alt_distance)
-        else:
-            fuel_alt = 0
 
         required_total = fuel_needed + fuel_alt + reserve_fuel
 
@@ -158,14 +156,16 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
         total_fuel_used += fuel_needed
         total_distance += distance_nm
 
-        # ---- TIME ----
+        # Time calculation
         delta_alt = dest["elevation_ft"] - current_origin["elevation_ft"]
-        climb_time = (delta_alt / ac["roc"]) / 60 if delta_alt > 0 else 0
-        cruise_time = distance_nm / ac["cruise"] if ac["cruise"] > 0 else 0
-        descent_time = abs(delta_alt / ac["roc"]) / 60 if ac["roc"] > 0 else 0
-        total_time_hr += climb_time + cruise_time + descent_time
 
-        # ---- HARD GATE ----
+        climb = (delta_alt / ac["roc"]) / 60 if delta_alt > 0 and ac["roc"] > 0 else 0
+        cruise = distance_nm / ac["cruise"] if ac["cruise"] > 0 else 0
+        descent = abs(delta_alt / ac["roc"]) / 60 if ac["roc"] > 0 else 0
+
+        total_time_hr += climb + cruise + descent
+
+        # Hard Gate Evaluation
         leg = {
             "origin": current_origin,
             "destination": dest,
@@ -176,15 +176,17 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
 
         result = evaluator.evaluate(ac, leg)
 
-        if result["hard_gate_overall_status"] == "FAIL":
-            mission_status = "FAIL_HARD_GATE"
-            break
-
+        # ---- EXTRACT MARGIN BEFORE FAIL CHECK ----
         leg_margin = extract_min_margin(result)
 
         if leg_margin is not None:
             if min_margin is None or leg_margin < min_margin:
                 min_margin = leg_margin
+
+        # ---- FAIL CHECK ----
+        if result["hard_gate_overall_status"] == "FAIL":
+            mission_status = "FAIL_HARD_GATE"
+            break
 
         payload_remaining -= delivery["weight_kg"]
         payload_delivered += delivery["weight_kg"]
@@ -193,9 +195,9 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
 
     return {
         "mission_status": mission_status,
-        "total_fuel_used": round(total_fuel_used, 2),
-        "total_time_hr": round(total_time_hr, 3),
-        "total_distance_nm": round(total_distance, 2),
+        "fuel_used": round(total_fuel_used, 2),
+        "time_hr": round(total_time_hr, 3),
+        "distance_nm": round(total_distance, 2),
         "payload_delivered": payload_delivered,
         "min_margin": min_margin
     }
@@ -207,7 +209,7 @@ final_output = {
 
 origin_key = mission_data["origin"].lower()
 
-# MERGE DUPLICATE DESTINATIONS
+# Merge duplicate destinations
 merged = {}
 for d in mission_data["deliveries"]:
     key = d["destination"].lower()
@@ -218,13 +220,10 @@ all_routes = list(itertools.permutations(deliveries))
 
 for aircraft in mission_data["assigned_fleet"]:
 
-    ac_name = aircraft["aircraft_name"]
-    ac_type = aircraft["type"]
+    ac = build_aircraft(aircraft["aircraft_name"], aircraft["type"])
+    evaluator = FixedWingHardGate() if "fixed" in aircraft["type"].lower() else RotaryWingHardGate()
 
-    ac = build_aircraft(ac_name, ac_type)
-    evaluator = FixedWingHardGate() if "fixed" in ac_type.lower() else RotaryWingHardGate()
-
-    aircraft_routes = []
+    routes = []
 
     for route in all_routes:
 
@@ -237,52 +236,45 @@ for aircraft in mission_data["assigned_fleet"]:
             mission_data["total_payload_kg"]
         )
 
-        if sim["mission_status"] != "PASS":
-            breakdown = None
-            final_score = 0
-        else:
+        if sim["mission_status"] == "PASS":
+
             avg_risk = compute_environmental_risk(
                 ac,
-                location_data["locations"][origin_key],
-                route
+                route,
+                location_data["locations"][origin_key]
             )
 
             scores = {
                 "delivery": delivery_score(sim["payload_delivered"], mission_data["total_payload_kg"]),
-                "temporal": temporal_score(sim["total_time_hr"]),
-                "fuel_efficiency": fuel_efficiency_score(sim["total_fuel_used"], sim["payload_delivered"]),
+                "temporal": temporal_score(sim["time_hr"]),
+                "fuel_efficiency": fuel_efficiency_score(sim["fuel_used"], sim["payload_delivered"]),
                 "environmental": environmental_score(avg_risk),
                 "safety": safety_score(sim["min_margin"])
             }
 
             final_score = aggregate_score(scores)
 
-            breakdown = {
-                "components": {k: round(v, 4) for k, v in scores.items()},
-                "weights": OBJECTIVE_WEIGHTS,
-                "final_score": round(final_score, 4)
-            }
+        else:
+            scores = None
+            final_score = 0
 
-        aircraft_routes.append({
+        routes.append({
             "route_sequence": [d["destination"] for d in route],
-            "mission_status": sim["mission_status"],
-            "fuel_used": sim["total_fuel_used"],
-            "time_hr": sim["total_time_hr"],
-            "distance_nm": sim["total_distance_nm"],
-            "payload_delivered": sim["payload_delivered"],
-            "score_breakdown": breakdown
+            "simulation": sim,
+            "score_breakdown": scores,
+            "final_score": round(final_score, 4)
         })
 
-    aircraft_routes.sort(
+    routes.sort(
         key=lambda x: (
-            x["mission_status"] != "PASS",
-            -(x["score_breakdown"]["final_score"] if x["score_breakdown"] else 0)
+            x["simulation"]["mission_status"] != "PASS",
+            -x["final_score"]
         )
     )
 
-    final_output["route_planning"][ac_name] = aircraft_routes[:3]
+    final_output["route_planning"][aircraft["aircraft_name"]] = routes[:3]
 
-with open("mission_planning_output.json", "w") as f:
+with open("simulation_mission_planning_output.json", "w") as f:
     json.dump(final_output, f, indent=2)
 
-print("Multi-route Mission Planning Agent (FIXED VERSION) completed.")
+print("Unified Mission Planning Engine completed.")
