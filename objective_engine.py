@@ -1,96 +1,62 @@
 import json
+import math
 
 # ============================================================
-# LOAD DATA
+# LOAD REQUIRED DATA
 # ============================================================
 
-with open("hard_gate_output.json") as f:
-    hard_gate_data = json.load(f)
+with open("dynamic_mission_output.json") as f:
+    dynamic_data = json.load(f)
 
 with open("safety_margin_output.json") as f:
     safety_data = json.load(f)
 
-
-# ============================================================
-# HARDCODED OBJECTIVES (sementara)
-# ============================================================
-
-USER_OBJECTIVES = [
-    {"name": "Delivery", "weight": 0.5},
-    {"name": "Safety", "weight": 0.3},
-    {"name": "Environmental", "weight": 0.2}
-]
-
-# Pastikan total weight = 1
-total_weight = sum(obj["weight"] for obj in USER_OBJECTIVES)
-if round(total_weight, 5) != 1:
-    raise ValueError("Objective weights must sum to 1")
+with open("payloads.json") as f:
+    mission_data = json.load(f)
 
 
 # ============================================================
-# SCORING HELPERS
+# OBJECTIVE FORMULAS
 # ============================================================
 
-def get_lambda_w(aircraft_result):
-    # Ambil lambda_w dari salah satu location (semua sama)
-    for loc in aircraft_result.values():
-        if "mass_compliance" in loc:
-            return loc["mass_compliance"]["details"]["lambda_w"]
-    return 0
-
-
-def get_min_margin(aircraft_name):
-    section = safety_data["safety_margin_analysis"][aircraft_name]["minimum_margin_section"]
-    if section is None:
+def compute_delivery_score(payload_delivered, payload_planned):
+    if payload_planned <= 0:
         return 0
-    return section["value"]
+    return min(1, payload_delivered / payload_planned)
 
 
-def get_fuel_margin_ratio(aircraft_result):
-    # Ambil fuel margin ratio terkecil
-    min_ratio = float("inf")
+def compute_temporal_score(total_mission_time_hr):
+    return 1 / (1 + total_mission_time_hr)
 
-    for loc in aircraft_result.values():
-        fuel = loc.get("fuel_compliance", {})
-        if "details" not in fuel:
-            continue
 
-        details = fuel["details"]
-        required = details["total_required_kg"]
-        onboard = details["fuel_onboard_kg"]
-
-        if required == 0:
-            continue
-
-        ratio = (onboard - required) / required
-
-        if ratio < min_ratio:
-            min_ratio = ratio
-
-    if min_ratio == float("inf"):
+def compute_fuel_efficiency_score(fuel_used, payload_delivered):
+    if payload_delivered <= 0:
         return 0
+    fuel_ratio = fuel_used / payload_delivered
+    return 1 / (1 + fuel_ratio)
 
-    return min_ratio
+
+def compute_environmental_score(avg_risk_index):
+    return max(0, 1 - avg_risk_index)
+
+
+def compute_safety_score(min_margin_value):
+    if min_margin_value is None:
+        return 0
+    return max(0, min_margin_value)
 
 
 # ============================================================
-# OBJECTIVE SCORE CALCULATIONS
+# HYBRID AGGREGATION
 # ============================================================
 
-def score_delivery(lambda_w):
-    # Delivery ingin muatan tinggi (mendekati 1)
-    return lambda_w
+def compute_final_score(scores, weights):
 
+    total = 0
+    for key in scores:
+        total += weights.get(key, 0) * scores[key]
 
-def score_safety(min_margin):
-    # Safety ingin margin tinggi
-    return max(0, min_margin)
-
-
-def score_environmental(fuel_margin_ratio):
-    # Environmental ingin fuel margin tidak berlebihan (efisiensi)
-    # Gunakan inverse penalty
-    return max(0, 1 - abs(fuel_margin_ratio))
+    return total
 
 
 # ============================================================
@@ -98,60 +64,83 @@ def score_environmental(fuel_margin_ratio):
 # ============================================================
 
 final_output = {
-    "mission_id": hard_gate_data["mission_id"],
-    "objective_engine_result": {}
+    "mission_id": mission_data["mission_id"],
+    "objective_scores": {}
 }
 
-for aircraft_name, aircraft_result in hard_gate_data["hard_gate_summary"].items():
+# Default Hybrid Weights
+weights = {
+    "delivery": 0.25,
+    "temporal": 0.20,
+    "fuel_efficiency": 0.20,
+    "environmental": 0.20,
+    "safety": 0.15
+}
 
-    lambda_w = get_lambda_w(aircraft_result)
-    min_margin = get_min_margin(aircraft_name)
-    fuel_ratio = get_fuel_margin_ratio(aircraft_result)
+for aircraft_name, mission_result in dynamic_data["mission_results"].items():
 
-    total_score = 0
-    breakdown = []
+    payload_delivered = mission_result.get("total_payload_delivered_kg", 0)
+    total_fuel_used = mission_result.get("total_fuel_used_kg", 0)
+    total_time_hr = mission_result.get("total_mission_time_hr", 0)
 
-    for obj in USER_OBJECTIVES:
+    safety_info = safety_data["safety_margin_analysis"].get(aircraft_name, {})
+    min_margin = None
+    avg_risk = 0
 
-        name = obj["name"]
-        weight = obj["weight"]
+    if safety_info:
+        min_section = safety_info.get("minimum_margin_section")
+        if min_section:
+            min_margin = min_section.get("value")
 
-        if name == "Delivery":
-            raw_score = score_delivery(lambda_w)
+        all_sections = safety_info.get("all_tactical_sections", [])
+        if all_sections:
+            avg_risk = sum(s["tactical_risk_index"] for s in all_sections) / len(all_sections)
 
-        elif name == "Safety":
-            raw_score = score_safety(min_margin)
+    # ---- Individual Scores ----
+    delivery_score = compute_delivery_score(
+        payload_delivered,
+        mission_data["total_payload_kg"]
+    )
 
-        elif name == "Environmental":
-            raw_score = score_environmental(fuel_ratio)
+    temporal_score = compute_temporal_score(total_time_hr)
 
-        else:
-            raw_score = 0
+    fuel_score = compute_fuel_efficiency_score(
+        total_fuel_used,
+        payload_delivered
+    )
 
-        weighted_score = raw_score * weight
-        total_score += weighted_score
+    environmental_score = compute_environmental_score(avg_risk)
 
-        breakdown.append({
-            "objective": name,
-            "weight": weight,
-            "raw_score": round(raw_score, 3),
-            "weighted_score": round(weighted_score, 3)
-        })
+    safety_score = compute_safety_score(min_margin)
 
-    final_output["objective_engine_result"][aircraft_name] = {
-        "lambda_w": round(lambda_w, 3),
-        "minimum_margin": round(min_margin, 4),
-        "fuel_margin_ratio": round(fuel_ratio, 4),
-        "total_weighted_score": round(total_score, 3),
-        "score_breakdown": breakdown
+    scores = {
+        "delivery": delivery_score,
+        "temporal": temporal_score,
+        "fuel_efficiency": fuel_score,
+        "environmental": environmental_score,
+        "safety": safety_score
+    }
+
+    final_score = compute_final_score(scores, weights)
+
+    final_output["objective_scores"][aircraft_name] = {
+        "weights": weights,
+        "components": {
+            "delivery": round(delivery_score, 4),
+            "temporal": round(temporal_score, 4),
+            "fuel_efficiency": round(fuel_score, 4),
+            "environmental": round(environmental_score, 4),
+            "safety": round(safety_score, 4)
+        },
+        "final_score": round(final_score, 4)
     }
 
 
 # ============================================================
-# SAVE
+# SAVE OUTPUT
 # ============================================================
 
 with open("objective_engine_output.json", "w") as f:
     json.dump(final_output, f, indent=2)
 
-print("Objective Engine (multi-weighted) completed.")
+print("Objective Engine Evaluation Completed.")

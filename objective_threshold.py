@@ -1,9 +1,5 @@
 import json
 
-# ============================================================
-# LOAD DATA
-# ============================================================
-
 with open("hard_gate_output.json") as f:
     hard_gate_data = json.load(f)
 
@@ -13,10 +9,6 @@ with open("safety_margin_output.json") as f:
 with open("payloads.json") as f:
     mission_data = json.load(f)
 
-
-# ============================================================
-# OBJECTIVE CONFIGURATION
-# ============================================================
 
 OBJECTIVE_THRESHOLDS = {
 
@@ -54,9 +46,6 @@ OBJECTIVE_THRESHOLDS = {
 }
 
 
-# ============================================================
-# HELPER
-# ============================================================
 
 def evaluate_objective(aircraft_name, aircraft_data, objective):
 
@@ -71,7 +60,6 @@ def evaluate_objective(aircraft_name, aircraft_data, objective):
     metric = min_section["metric"]
     value = min_section["value"]
 
-    # ================= CHECK PER METRIC =================
     required = None
 
     if metric in ["takeoff_performance", "runway_feasibility"]:
@@ -102,10 +90,6 @@ def evaluate_objective(aircraft_name, aircraft_data, objective):
     }
 
 
-# ============================================================
-# MAIN PROCESS
-# ============================================================
-
 # Ambil objective dari mission
 selected_objective = mission_data.get("objective_mode", "Delivery")
 
@@ -124,10 +108,6 @@ for aircraft_name, aircraft_result in hard_gate_data["hard_gate_summary"].items(
 
     final_output["objective_threshold_evaluation"][aircraft_name] = evaluation
 
-
-# ============================================================
-# SAVE
-# ============================================================
 
 with open("objective_threshold_output.json", "w") as f:
     json.dump(final_output, f, indent=2)

@@ -5,70 +5,82 @@
       {
         "route_sequence": [
           "ilaga",
-          "Sinak",
           "sinak",
           "wamena"
         ],
         "mission_status": "FAIL_HARD_GATE",
         "fuel_used": 107.82,
-        "objective_score": 0
+        "time_hr": 0.668,
+        "distance_nm": 54.81,
+        "payload_delivered": 0,
+        "score_breakdown": null
       },
       {
         "route_sequence": [
           "ilaga",
-          "Sinak",
           "wamena",
           "sinak"
         ],
         "mission_status": "FAIL_HARD_GATE",
         "fuel_used": 107.82,
-        "objective_score": 0
+        "time_hr": 0.668,
+        "distance_nm": 54.81,
+        "payload_delivered": 0,
+        "score_breakdown": null
       },
       {
         "route_sequence": [
-          "ilaga",
           "sinak",
-          "Sinak",
+          "ilaga",
           "wamena"
         ],
         "mission_status": "FAIL_HARD_GATE",
-        "fuel_used": 107.82,
-        "objective_score": 0
+        "fuel_used": 125.32,
+        "time_hr": 0.759,
+        "distance_nm": 70.96,
+        "payload_delivered": 0,
+        "score_breakdown": null
       }
     ],
     "EC725 Caracal": [
       {
         "route_sequence": [
           "ilaga",
+          "sinak",
+          "wamena"
+        ],
+        "mission_status": "FAIL_FUEL",
+        "fuel_used": 414.81,
+        "time_hr": 0.672,
+        "distance_nm": 70.97,
+        "payload_delivered": 900,
+        "score_breakdown": null
+      },
+      {
+        "route_sequence": [
+          "ilaga",
           "wamena",
-          "Sinak",
           "sinak"
         ],
         "mission_status": "FAIL_FUEL",
         "fuel_used": 339.88,
-        "objective_score": 0
+        "time_hr": 0.553,
+        "distance_nm": 54.81,
+        "payload_delivered": 400,
+        "score_breakdown": null
       },
       {
         "route_sequence": [
-          "ilaga",
-          "wamena",
           "sinak",
-          "Sinak"
-        ],
-        "mission_status": "FAIL_FUEL",
-        "fuel_used": 339.88,
-        "objective_score": 0
-      },
-      {
-        "route_sequence": [
-          "Sinak",
           "ilaga",
-          "sinak",
           "wamena"
         ],
         "mission_status": "FAIL_HARD_GATE",
         "fuel_used": 404.04,
-        "objective_score": 0
+        "time_hr": 0.649,
+        "distance_nm": 70.96,
+        "payload_delivered": 0,
+        "score_breakdown": null
       }
     ]
   }

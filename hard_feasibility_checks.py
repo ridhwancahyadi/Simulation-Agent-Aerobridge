@@ -1,10 +1,6 @@
 import json
 import math
 
-# ============================================================
-# LOAD DATA
-# ============================================================
-
 with open("aircraft_parameters.json") as f:
     aircraft_data = json.load(f)
 
@@ -14,17 +10,11 @@ with open("location_params.json") as f:
 with open("payloads.json") as f:
     mission_data = json.load(f)
 
-
-# ============================================================
-# UTILITIES
-# ============================================================
-
 def density_altitude(elev_ft, oat_c, qnh_hpa):
     pressure_alt = elev_ft + (1013 - qnh_hpa) * 30
     isa_temp = 15 - (0.0065 * elev_ft * 0.3048)
     da = pressure_alt + 120 * (oat_c - isa_temp)
     return da
-
 
 def isa_density_ratio(da_ft):
     sigma_raw = 1 - (da_ft / 145442)
@@ -32,10 +22,8 @@ def isa_density_ratio(da_ft):
         return 0.05
     return max(0.05, sigma_raw ** 4.255)
 
-
 def climb_gradient(roc_fpm, tas_kt):
     return roc_fpm / (tas_kt * 101.27)
-
 
 def fuel_required(distance_nm, cruise_kt, fuel_flow_kgph, reserve_min):
     if cruise_kt == 0:
@@ -45,7 +33,6 @@ def fuel_required(distance_nm, cruise_kt, fuel_flow_kgph, reserve_min):
     reserve_fuel = fuel_flow_kgph * (reserve_min / 60)
     total = trip_fuel + reserve_fuel
     return total, trip_fuel, reserve_fuel
-
 
 def haversine_nm(lat1, lon1, lat2, lon2):
     R_km = 6371
@@ -60,11 +47,6 @@ def haversine_nm(lat1, lon1, lat2, lon2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     distance_km = R_km * c
     return distance_km * 0.539957
-
-
-# ============================================================
-# FIXED WING HARD GATE
-# ============================================================
 
 class FixedWingHardGate:
 
@@ -136,7 +118,7 @@ class FixedWingHardGate:
             }
         }
 
-        # ================= CLIMB =================
+        
         roc_loss_factor = ac["roc_loss"] * (da / 1000)
         roc_corrected = ac["roc"] * (1 - roc_loss_factor)
 
@@ -156,7 +138,7 @@ class FixedWingHardGate:
             }
         }
 
-        # ================= FUEL =================
+        
         fuel_total, trip_fuel, reserve_fuel = fuel_required(
             leg["distance_nm"],
             ac["cruise"],
@@ -177,7 +159,7 @@ class FixedWingHardGate:
             }
         }
 
-        # ================= WEATHER =================
+        
         weather_pass = (
             weather["visibility_km"] >= ac["min_visibility"] and
             wind_speed_kt <= ac["max_crosswind"]
@@ -201,10 +183,6 @@ class FixedWingHardGate:
         return result
 
 
-# ============================================================
-# ROTARY HARD GATE
-# ============================================================
-
 class RotaryWingHardGate:
 
     def evaluate(self, ac, leg):
@@ -227,7 +205,6 @@ class RotaryWingHardGate:
         Wg = ac["empty"] + leg["payload_kg"] + leg["fuel_onboard_kg"]
         lambda_w = Wg / ac["mtow"] if ac["mtow"] else 0
 
-        # ================= MASS =================
         mass_pass = (
             Wg <= ac["mtow"] and
             ac["cg_min"] <= ac["cg_current"] <= ac["cg_max"]
@@ -242,7 +219,6 @@ class RotaryWingHardGate:
             }
         }
 
-        # ================= POWER =================
         P_avail = ac["engine_power"] * sigma
         P_req = ac["engine_power"] * (lambda_w ** 1.5)
 
@@ -263,7 +239,6 @@ class RotaryWingHardGate:
             }
         }
 
-        # ================= OGE =================
         Wmax_oge = ac["mtow"] * sigma
         oge_margin = (Wmax_oge - Wg) / Wmax_oge
 
@@ -276,7 +251,6 @@ class RotaryWingHardGate:
             }
         }
 
-        # ================= FUEL =================
         fuel_total, trip_fuel, reserve_fuel = fuel_required(
             leg["distance_nm"],
             ac["cruise"],
@@ -297,7 +271,6 @@ class RotaryWingHardGate:
             }
         }
 
-        # ================= WEATHER =================
         weather_pass = (
             weather["visibility_km"] >= ac["min_visibility"] and
             wind_speed_kt <= ac["max_crosswind"]
@@ -317,11 +290,6 @@ class RotaryWingHardGate:
         )
 
         return result
-
-
-# ============================================================
-# MAIN EXECUTION
-# ============================================================
 
 results = {}
 

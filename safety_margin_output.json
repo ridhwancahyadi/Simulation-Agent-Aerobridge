@@ -5,17 +5,67 @@
       "minimum_margin_section": {
         "metric": "runway_feasibility",
         "location": "ilaga",
-        "value": -0.2544,
-        "interpretation": "Landing distance closest to runway limit"
-      }
+        "value": -0.2544
+      },
+      "highest_tactical_risk_section": {
+        "location": "wamena",
+        "environmental_risk": 0.4585,
+        "temporal_stress": 0.4974,
+        "tactical_risk_index": 0.4741
+      },
+      "all_tactical_sections": [
+        {
+          "location": "wamena",
+          "environmental_risk": 0.4585,
+          "temporal_stress": 0.4974,
+          "tactical_risk_index": 0.4741
+        },
+        {
+          "location": "ilaga",
+          "environmental_risk": 0.4606,
+          "temporal_stress": 0.2649,
+          "tactical_risk_index": 0.3823
+        },
+        {
+          "location": "sinak",
+          "environmental_risk": 0.303,
+          "temporal_stress": 0.3165,
+          "tactical_risk_index": 0.3084
+        }
+      ]
     },
     "EC725 Caracal": {
       "minimum_margin_section": {
         "metric": "oge_feasibility",
         "location": "ilaga",
-        "value": 0.039,
-        "interpretation": "Hover ceiling closest to OGE limit"
-      }
+        "value": 0.039
+      },
+      "highest_tactical_risk_section": {
+        "location": "wamena",
+        "environmental_risk": 0.4916,
+        "temporal_stress": 0.5701,
+        "tactical_risk_index": 0.523
+      },
+      "all_tactical_sections": [
+        {
+          "location": "wamena",
+          "environmental_risk": 0.4916,
+          "temporal_stress": 0.5701,
+          "tactical_risk_index": 0.523
+        },
+        {
+          "location": "ilaga",
+          "environmental_risk": 0.5057,
+          "temporal_stress": 0.2941,
+          "tactical_risk_index": 0.4211
+        },
+        {
+          "location": "sinak",
+          "environmental_risk": 0.3423,
+          "temporal_stress": 0.3556,
+          "tactical_risk_index": 0.3476
+        }
+      ]
     }
   }
 }
