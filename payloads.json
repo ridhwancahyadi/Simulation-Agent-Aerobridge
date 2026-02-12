@@ -1,0 +1,23 @@
+{
+  "mission_id": "LOG-PAPUA-001",
+  "origin": "timika",
+  "assigned_fleet": [
+    {
+      "aircraft_name": "Cessna 208b",
+      "type": "Fixed Wing",
+      "fuel_kg": 500
+    },
+    {
+      "aircraft_name": "EC725 Caracal",
+      "type": "Rotary Wing",
+      "fuel_kg": 1000
+    }
+  ],
+  "deliveries": [
+    { "item": "Beras", "weight_kg": 400, "destination": "ilaga" },
+    { "item": "Beras", "weight_kg": 400, "destination": "Sinak" },
+    { "item": "Mie Instan", "weight_kg": 100, "destination": "sinak" },
+    { "item": "Minyak Goreng", "weight_kg": 100, "destination": "wamena" }
+  ],
+  "total_payload_kg": 1200
+}

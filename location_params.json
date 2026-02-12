@@ -1,0 +1,47 @@
+{
+  "locations": {
+    "timika": {
+      "name": "Mozes Kilangin",
+      "icao": "WAYY",
+      "elevation_ft": 103,
+      "coords": [-4.52755, 136.889958],
+      "surface": "Aspal Hotmix",
+      "runway_length": 3300,
+      "runway_heading_deg": 140,
+      "weather": { "oat_c": 35, "qnh_hpa": 1009, "wind_speed_mps": 3.6, "visibility_km": 9 }
+    },
+
+    "ilaga": {
+      "name": "Ilaga",
+      "icao": "WAYL",
+      "elevation_ft": 7989,
+      "coords": [-3.977222, 137.620278],
+      "surface": "Aspal Kolakan",
+      "runway_length": 1205,
+      "runway_heading_deg": 160,
+      "weather": { "oat_c": 25, "qnh_hpa": 1007, "wind_speed_mps": 3.1, "visibility_km": 6 }
+    },
+
+    "wamena": {
+      "name": "Wamena",
+      "icao": "WAVV",
+      "elevation_ft": 5435,
+      "coords": [-4.097578, 138.952653],
+      "surface": "Aspal Hotmix",
+      "runway_length": 2175,
+      "runway_heading_deg": 150,
+      "weather": { "oat_c": 26, "qnh_hpa": 1006, "wind_speed_mps": 5.6, "visibility_km": 10 }
+    },
+
+    "sinak": {
+      "name": "Sinak",
+      "icao": "WABS",
+      "elevation_ft": 7299,
+      "coords": [-3.822728, 137.84115],
+      "surface": "Aspal Kolakan",
+      "runway_length": 1305,
+      "runway_heading_deg": 160,
+      "weather": { "oat_c": 20, "qnh_hpa": 1007, "wind_speed_mps": 0, "visibility_km": 7 }
+    }
+  }
+}

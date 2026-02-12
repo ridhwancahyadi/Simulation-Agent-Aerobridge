@@ -1,0 +1,384 @@
+{
+    "Fixed Wing": {
+        "Cessna 208B": {
+            "Max Takeoff Weight (MTOW)": {
+                "value": 3969,
+                "unit": "kg",
+                "type": "Mass and Structural"
+            },
+            "Empty Weight (OEW)": {
+                "value": 2070,
+                "unit": "kg",
+                "type": "Mass and Structural"
+            },
+            "Useful Load": {
+                "value": 1899,
+                "unit": "kg",
+                "type": "Mass and Structural"
+            },
+            "Fuel Capacity": {
+                "value": 1257,
+                "unit": "L",
+                "type": "Fuel Model"
+            },
+            "Max Landing Weight": {
+                "value": 3856,
+                "unit": "kg",
+                "type": "Mass and Structural"
+            },
+            "Cruise Speed": {
+                "value": 140,
+                "unit": "kt",
+                "type": "Aerodynamic Performance"
+            },
+            "Rate of Climb": {
+                "value": 950,
+                "unit": "fpm",
+                "type": "Aerodynamic Performance"
+            },
+            "Service Ceiling": {
+                "value": 25000,
+                "unit": "ft",
+                "type": "Aerodynamic Performance"
+            },
+            "Stall Speed": {
+                "value": 61,
+                "unit": "KIAS",
+                "type": "Aerodynamic Performance"
+            },
+            "Max Crosswind": {
+                "value": 20,
+                "unit": "kt",
+                "type": "Aerodynamic Performance"
+            },
+            "Takeoff Distance": {
+                "value": 730,
+                "unit": "m",
+                "type": "Runway Performance"
+            },
+            "Landing Distance": {
+                "value": 800,
+                "unit": "m",
+                "type": "Runway Performance"
+            },
+            "Balance Field Length": {
+                "value": 740,
+                "unit": "m",
+                "type": "Runway Performance"
+            },
+            "Climb": {
+                "value": 220,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Cruise": {
+                "value": 180,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Descent": {
+                "value": 120,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Reserve Policy": {
+                "value": 45,
+                "unit": "min",
+                "type": "Fuel Model"
+            },
+            "Gravel Surface": {
+                "value": 10,
+                "unit": "%",
+                "type": "Sensitivity"
+            },
+            "Wet Runway": {
+                "value": 15,
+                "unit": "%",
+                "type": "Sensitivity"
+            },
+            "Takeoff Increase per 1000 ft DA": {
+                "value": 10,
+                "unit": "%",
+                "type": "Sensitivity"
+            },
+            "Landing Increase per 1000 ft DA": {
+                "value": 5,
+                "unit": "ft",
+                "type": "Sensitivity"
+            },
+            "ROC loss per 1000 ft": {
+                "value": 4,
+                "unit": "%",
+                "type": "Sensitivity"
+            },
+            "Thrust loss per 1000 ft": {
+                "value": 3,
+                "unit": "%",
+                "type": "Sensitivity"
+            }
+        }
+    },
+    "Rotary Wing": {
+        "EC725 Caracal": {
+            "MTOW": {
+                "value": 11000,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Empty Weight": {
+                "value": 5300,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Useful Load": {
+                "value": 5500,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Engines": {
+                "value": 2,
+                "unit": "unit",
+                "type": "Mass  and Structural"
+            },
+            "Max Continuous Power": {
+                "value": "2x2100",
+                "unit": "shp",
+                "type": "Performance Envelope"
+            },
+            "Cruised Speed": {
+                "value": 145,
+                "unit": "kt",
+                "type": "Performance Envelope"
+            },
+            "ROC": {
+                "value": 1500,
+                "unit": "fpm",
+                "type": "Performance Envelope"
+            },
+            "Service Ceiling": {
+                "value": 20000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling IGE": {
+                "value": 13000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling OGE": {
+                "value": 9500,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Max Torque": {
+                "value": 100,
+                "unit": "%",
+                "type": "Performance Envelope"
+            },
+            "Fuel Capacity": {
+                "value": 2875,
+                "unit": "L",
+                "type": "Fuel Model"
+            },
+            "Phase Hover": {
+                "value": 800,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Climb": {
+                "value": 750,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Cruise": {
+                "value": 650,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Loiter": {
+                "value": 600,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Reserve": {
+                "value": 30,
+                "unit": "min",
+                "type": "Fuel Model"
+            }
+        },
+        "Bell 412": {
+            "MTOW": {
+                "value": 5400,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Empty Weight": {
+                "value": 3100,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Useful Load": {
+                "value": 2200,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Engines": {
+                "value": 2,
+                "unit": "unit",
+                "type": "Mass  and Structural"
+            },
+            "Max Continuous Power": {
+                "value": "2x900",
+                "unit": "shp",
+                "type": "Performance Envelope"
+            },
+            "Cruised Speed": {
+                "value": 122,
+                "unit": "kt",
+                "type": "Performance Envelope"
+            },
+            "ROC": {
+                "value": 1400,
+                "unit": "fpm",
+                "type": "Performance Envelope"
+            },
+            "Service Ceiling": {
+                "value": 20000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling IGE": {
+                "value": 11000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling OGE": {
+                "value": 9500,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Max Torque": {
+                "value": 100,
+                "unit": "%",
+                "type": "Performance Envelope"
+            },
+            "Fuel Capacity": {
+                "value": 1250,
+                "unit": "L",
+                "type": "Fuel Model"
+            },
+            "Phase Hover": {
+                "value": 600,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Climb": {
+                "value": 500,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Cruise": {
+                "value": 550,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Loiter": {
+                "value": 550,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Reserve": {
+                "value": 30,
+                "unit": "min",
+                "type": "Fuel Model"
+            }
+        },
+        "MI-17": {
+            "MTOW": {
+                "value": 13000,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Empty Weight": {
+                "value": 7500,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Useful Load": {
+                "value": 5500,
+                "unit": "kg",
+                "type": "Mass  and Structural"
+            },
+            "Engines": {
+                "value": 2,
+                "unit": "unit",
+                "type": "Mass  and Structural"
+            },
+            "Max Continuous Power": {
+                "value": "2x2200",
+                "unit": "shp",
+                "type": "Performance Envelope"
+            },
+            "Cruised Speed": {
+                "value": 135,
+                "unit": "kt",
+                "type": "Performance Envelope"
+            },
+            "ROC": {
+                "value": 1600,
+                "unit": "fpm",
+                "type": "Performance Envelope"
+            },
+            "Service Ceiling": {
+                "value": 19700,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling IGE": {
+                "value": 12000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Hover Ceiling OGE": {
+                "value": 9000,
+                "unit": "ft",
+                "type": "Performance Envelope"
+            },
+            "Max Torque": {
+                "value": 100,
+                "unit": "%",
+                "type": "Performance Envelope"
+            },
+            "Fuel Capacity": {
+                "value": 2375,
+                "unit": "L",
+                "type": "Fuel Model"
+            },
+            "Phase Hover": {
+                "value": 1000,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Climb": {
+                "value": 950,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Cruise": {
+                "value": 900,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Loiter": {
+                "value": 900,
+                "unit": "kg/hr",
+                "type": "Fuel Model"
+            },
+            "Phase Reserve": {
+                "value": 30,
+                "unit": "min",
+                "type": "Fuel Model"
+            }
+        }
+    }
+}

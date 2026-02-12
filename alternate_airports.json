@@ -1,0 +1,80 @@
+{
+  "alternates": {
+    "dekai": {
+      "name": "Nop Goliat Dekai",
+      "icao": "WAVD",
+      "iata": "DEX",
+      "coords": [-4.041, 138.154],
+      "elevation_ft": 329,
+      "runway_length": 1950,
+      "runway_heading_deg": 90,
+      "weather": {
+        "oat_c": 27,
+        "qnh_hpa": 1010,
+        "wind_speed_mps": 3,
+        "visibility_km": 8
+      }
+    },
+
+    "mulia": {
+      "name": "Mulia",
+      "icao": "WABP",
+      "coords": [-3.700, 137.930],
+      "elevation_ft": 7000,
+      "runway_length": 1000,
+      "runway_heading_deg": 100,
+      "weather": {
+        "oat_c": 15,
+        "qnh_hpa": 1008,
+        "wind_speed_mps": 2,
+        "visibility_km": 6
+      }
+    },
+
+    "nabire": {
+      "name": "Nabire",
+      "icao": "WABI",
+      "iata": "NBX",
+      "coords": [-3.368, 135.496],
+      "elevation_ft": 20,
+      "runway_length": 1600,
+      "runway_heading_deg": 120,
+      "weather": {
+        "oat_c": 29,
+        "qnh_hpa": 1011,
+        "wind_speed_mps": 4,
+        "visibility_km": 10
+      }
+    },
+
+    "enarotali": {
+      "name": "Enarotali",
+      "icao": "WAYA",
+      "coords": [-3.926, 136.377],
+      "elevation_ft": 5600,
+      "runway_length": 900,
+      "runway_heading_deg": 80,
+      "weather": {
+        "oat_c": 18,
+        "qnh_hpa": 1009,
+        "wind_speed_mps": 2,
+        "visibility_km": 7
+      }
+    },
+
+    "kenyam": {
+      "name": "Kenyam",
+      "icao": "WAJM",
+      "coords": [-4.050, 139.500],
+      "elevation_ft": 2100,
+      "runway_length": 1200,
+      "runway_heading_deg": 110,
+      "weather": {
+        "oat_c": 24,
+        "qnh_hpa": 1010,
+        "wind_speed_mps": 3,
+        "visibility_km": 8
+      }
+    }
+  }
+}

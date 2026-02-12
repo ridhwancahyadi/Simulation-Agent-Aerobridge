@@ -1,0 +1,21 @@
+{
+  "mission_id": "LOG-PAPUA-001",
+  "safety_margin_analysis": {
+    "Cessna 208b": {
+      "minimum_margin_section": {
+        "metric": "runway_feasibility",
+        "location": "ilaga",
+        "value": -0.2544,
+        "interpretation": "Landing distance closest to runway limit"
+      }
+    },
+    "EC725 Caracal": {
+      "minimum_margin_section": {
+        "metric": "oge_feasibility",
+        "location": "ilaga",
+        "value": 0.039,
+        "interpretation": "Hover ceiling closest to OGE limit"
+      }
+    }
+  }
+}

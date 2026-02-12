@@ -1,0 +1,75 @@
+{
+  "mission_id": "LOG-PAPUA-001",
+  "route_planning": {
+    "Cessna 208b": [
+      {
+        "route_sequence": [
+          "ilaga",
+          "Sinak",
+          "sinak",
+          "wamena"
+        ],
+        "mission_status": "FAIL_HARD_GATE",
+        "fuel_used": 107.82,
+        "objective_score": 0
+      },
+      {
+        "route_sequence": [
+          "ilaga",
+          "Sinak",
+          "wamena",
+          "sinak"
+        ],
+        "mission_status": "FAIL_HARD_GATE",
+        "fuel_used": 107.82,
+        "objective_score": 0
+      },
+      {
+        "route_sequence": [
+          "ilaga",
+          "sinak",
+          "Sinak",
+          "wamena"
+        ],
+        "mission_status": "FAIL_HARD_GATE",
+        "fuel_used": 107.82,
+        "objective_score": 0
+      }
+    ],
+    "EC725 Caracal": [
+      {
+        "route_sequence": [
+          "ilaga",
+          "wamena",
+          "Sinak",
+          "sinak"
+        ],
+        "mission_status": "FAIL_FUEL",
+        "fuel_used": 339.88,
+        "objective_score": 0
+      },
+      {
+        "route_sequence": [
+          "ilaga",
+          "wamena",
+          "sinak",
+          "Sinak"
+        ],
+        "mission_status": "FAIL_FUEL",
+        "fuel_used": 339.88,
+        "objective_score": 0
+      },
+      {
+        "route_sequence": [
+          "Sinak",
+          "ilaga",
+          "sinak",
+          "wamena"
+        ],
+        "mission_status": "FAIL_HARD_GATE",
+        "fuel_used": 404.04,
+        "objective_score": 0
+      }
+    ]
+  }
+}
