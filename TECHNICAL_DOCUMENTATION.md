@@ -8,10 +8,48 @@ Dokumen ini menjelaskan detail teknis dari seluruh modul simulasi (.py) yang dig
 
 Sistem beroperasi melalui tahapan berikut dengan filter bertingkat:
 
+### Alur Keputusan (Gating Logic)
+
+```mermaid
+graph TD
+    subgraph Inputs
+        A1[payloads.json]
+        A2[aircraft_parameters.json]
+        A3[location_params.json]
+    end
+
+    A1 --> B(scenario_config.py)
+    B -->|Weights & Safety Policy| C{Gate 1: Hard Feasibility}
+
+    C -->|FAIL: Geometri Runway/DA| FAIL1[Status: FAIL_HARD_GATE]
+    C -->|PASS| D[dynamic_mission_gate.py]
+
+    D --> E{Gate 2: Fuel & Security}
+    E -->|FAIL: BBM Habis| FAIL2[Status: FAIL_FUEL]
+    E -->|PASS| F[safety_margin_analysis.py]
+
+    F --> G[Margin: Runway/Power/Fuel]
+    G --> H{Gate 3: Policy Enforcement}
+
+    H -->|Margin < Policy Threshold| FAIL3[Status: FAIL_POLICY_THRESHOLD]
+    H -->|Margin >= Policy Threshold| I[objective_engine.py]
+
+    I --> J[Calculating Multi-Objective Scores]
+    J --> K[mission_planning_engine.py]
+    K --> L[Route & Fleet Optimization]
+    L --> M[Reporting & Mitigations]
+    M --> N(simulation_mission_planning_output.json)
+
+    style FAIL1 fill:#f96,stroke:#333
+    style FAIL2 fill:#f96,stroke:#333
+    style FAIL3 fill:#f96,stroke:#333
+    style N fill:#9f9,stroke:#333
+```
+
 1.  **Hard Feasibility Gate**: Cek kelaikan fisik dasar (Runway vs Pesawat).
 2.  **Dynamic Simulation**: Perhitungan konsumsi BBM dan waktu dengan asumsi _Universal Refueling_.
 3.  **Safety Margin Analysis**: Perhitungan jarak aman operasional (Runway margin, OGE buffer).
-4.  **Policy Filtering (NEW)**: Filter biner berdasarkan level keselamatan (Standard, Strict, Aggressive). Jika margin di bawah standar policy, misi status = **FAIL_POLICY_THRESHOLD**.
+4.  **Policy Filtering (NEW)**: Filter biner berdasarkan level sebelumnya. Jika margin di bawah standar policy (Strict/Standard/Aggressive), misi status = **FAIL_POLICY_THRESHOLD**.
 5.  **Strategic Ranking (NEW)**: Perankingan sisa kandidat yang lolos filter menggunakan bobot prioritas pengguna.
 6.  **Reporting**: Generasi laporan taktis (Pilot Heads-up, Mitigasi).
 
