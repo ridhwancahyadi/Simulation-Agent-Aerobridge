@@ -270,16 +270,28 @@ for aircraft in mission_data["assigned_fleet"]:
         if hard_result["hard_gate_overall_status"] == "FAIL":
             mission_status = "FAIL_HARD_GATE"
 
+        # Tactical Info (Simulated)
+        threat_level = dest.get("security_threat", "Low")
+        is_hotspot = dest.get("is_hotspot", False)
+
         leg_results.append({
             "from": current_origin_key,
             "to": dest_key,
             "fuel_used": round(fuel_needed, 2),
             "fuel_remaining": round(fuel_remaining, 2),
-            "hard_gate_status": hard_result["hard_gate_overall_status"]
+            "hard_gate_status": hard_result["hard_gate_overall_status"],
+            "tactical": {
+                "threat_level": threat_level,
+                "hotspot_active": is_hotspot
+            }
         })
 
         current_origin = dest
         current_origin_key = dest_key
+        
+        # REFUELING AT ELEMENT (Universal Refueling Assumption)
+        # Refuel back to initial dispatch load
+        fuel_remaining = aircraft["fuel_kg"] 
 
     # Return to base
     distance_nm = haversine_nm(
@@ -288,6 +300,9 @@ for aircraft in mission_data["assigned_fleet"]:
         origin["coords"][0],
         origin["coords"][1]
     )
+    
+    # We create a virtual leg output for Refueling if needed? 
+    # For now, just implicit.
 
     fuel_rtb, _, _, _ = compute_leg_fuel(ac, current_origin, origin, distance_nm)
 

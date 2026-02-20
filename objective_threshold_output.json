@@ -4,14 +4,14 @@
     "Cessna 208b": {
       "objective": "Delivery",
       "metric_evaluated": "runway_feasibility",
-      "margin_value": -0.2544,
+      "margin_value": -0.2126,
       "required_threshold": 0.0,
       "status": "FAIL"
     },
     "EC725 Caracal": {
       "objective": "Delivery",
       "metric_evaluated": "oge_feasibility",
-      "margin_value": 0.039,
+      "margin_value": 0.065,
       "required_threshold": null,
       "status": "PASS"
     }

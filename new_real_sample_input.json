@@ -1,0 +1,139 @@
+{
+  "locations": {
+    "timika": {
+      "name": "Mozes Kilangin",
+      "icao": "WAYY",
+      "elevation_ft": 103,
+      "coords": [-4.524, 136.878],
+      "surface": "Aspal",
+      "runway_length_m": 2390,
+      "runway_heading_deg": 119,
+      "weather": {
+        "oat_c": 31,
+        "qnh_hpa": 1009,
+        "wind_speed_mps": 4.1,
+        "wind_dir_deg": 120,
+        "visibility_km": 9
+      }
+    },
+    "sinak": {
+      "name": "Sinak",
+      "icao": "WABS",
+      "elevation_ft": 7299,
+      "coords": [-3.822249, 137.839208],
+      "surface": "Aspal Kolakan",
+      "runway_length_m": 1100,
+      "runway_heading_deg": 170,
+      "weather": {
+        "oat_c": 19,
+        "qnh_hpa": 1007,
+        "wind_speed_mps": 1.5,
+        "wind_dir_deg": 190,
+        "visibility_km": 7
+      }
+    },
+    "ilaga": {
+      "name": "Puncak / Ilaga",
+      "icao": "WAYL",
+      "elevation_ft": 7985,
+      "coords": [-3.977, 137.621],
+      "surface": "Hard / Aspal",
+      "runway_length_m": 600,
+      "runway_heading_deg": 76,
+      "weather": {
+        "oat_c": 17,
+        "qnh_hpa": 1006,
+        "wind_speed_mps": 2.8,
+        "wind_dir_deg": 80,
+        "visibility_km": 6
+      }
+    },
+    "oksibil": {
+      "name": "Oksibil",
+      "icao": "WAJO",
+      "elevation_ft": 4288,
+      "coords": [-4.9071, 140.6277],
+      "surface": "Aspal",
+      "runway_length_m": 1350,
+      "runway_heading_deg": 111,
+      "weather": {
+        "oat_c": 22,
+        "qnh_hpa": 1008,
+        "wind_speed_mps": 3.2,
+        "wind_dir_deg": 130,
+        "visibility_km": 8
+      }
+    },
+    "senggi": {
+      "name": "Keerom / Senggeh",
+      "icao": "WAJS",
+      "elevation_ft": 680,
+      "coords": [-3.4424, 140.7781],
+      "surface": "Aspal",
+      "runway_length_m": 900,
+      "runway_heading_deg": 11,
+      "weather": {
+        "oat_c": 30,
+        "qnh_hpa": 1010,
+        "wind_speed_mps": 4.7,
+        "wind_dir_deg": 20,
+        "visibility_km": 10
+      }
+    }
+  },
+
+  "params": {
+    "mission_category": "cargo",
+    "mission_date": "2026-01-27 05:00",
+    "source_point": "WAYY (Mozes Kilangin)",
+    "destination_point": "WAJS (Senggi)",
+    "fuel_kg": 600,
+
+    "routes": [
+      { "id": "r1", "location": "WAYY (Mozes Kilangin)" },
+      { "id": "r2", "location": "WABS (Sinak)" },
+      { "id": "r3", "location": "WAYL (Ilaga)" },
+      { "id": "r4", "location": "WAJO (Oksibil)" },
+      { "id": "r5", "location": "WAJS (Senggi)" }
+    ],
+
+    "payloads": [
+      {
+        "name": "BULOG Rice",
+        "weight": 220,
+        "from": "WAYY (Mozes Kilangin)",
+        "to": "WABS (Sinak)"
+      },
+      {
+        "name": "Cooking Oil",
+        "weight": 90,
+        "from": "WAYY (Mozes Kilangin)",
+        "to": "WAYL (Ilaga)"
+      },
+      {
+        "name": "Medical Supplies",
+        "weight": 60,
+        "from": "WABS (Sinak)",
+        "to": "WAYL (Ilaga)"
+      },
+      {
+        "name": "Tents & Blankets",
+        "weight": 110,
+        "from": "WAYL (Ilaga)",
+        "to": "WAJO (Oksibil)"
+      },
+      {
+        "name": "Handheld Radios (HT)",
+        "weight": 25,
+        "from": "WABS (Sinak)",
+        "to": "WAJO (Oksibil)"
+      },
+      {
+        "name": "Indomie",
+        "weight": 70,
+        "from": "WAJO (Oksibil)",
+        "to": "WAJS (Senggi)"
+      }
+    ]
+  }
+}

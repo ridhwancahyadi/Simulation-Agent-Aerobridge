@@ -21,13 +21,6 @@
         },
         {
           "from": "sinak",
-          "to": "sinak",
-          "fuel_used": 0.0,
-          "fuel_remaining": 370.31,
-          "hard_gate_status": "PASS"
-        },
-        {
-          "from": "sinak",
           "to": "wamena",
           "fuel_used": 91.13,
           "fuel_remaining": 279.18,
@@ -50,13 +43,6 @@
           "from": "ilaga",
           "to": "sinak",
           "fuel_used": 74.93,
-          "fuel_remaining": 585.19,
-          "hard_gate_status": "PASS"
-        },
-        {
-          "from": "sinak",
-          "to": "sinak",
-          "fuel_used": 0.0,
           "fuel_remaining": 585.19,
           "hard_gate_status": "PASS"
         },

@@ -1,6 +1,25 @@
 {
   "mission_id": "LOG-PAPUA-001",
   "origin": "timika",
+  "scenario_id": "Emergency",
+  "total_payload_kg": 1000,
+  "deliveries": [
+    {
+      "destination": "ilaga",
+      "weight_kg": 200,
+      "priority": "High"
+    },
+    {
+      "destination": "sinak",
+      "weight_kg": 300,
+      "priority": "High"
+    },
+    {
+      "destination": "wamena",
+      "weight_kg": 500,
+      "priority": "Normal"
+    }
+  ],
   "assigned_fleet": [
     {
       "aircraft_name": "Cessna 208b",
@@ -12,12 +31,5 @@
       "type": "Rotary Wing",
       "fuel_kg": 1000
     }
-  ],
-  "deliveries": [
-    { "item": "Beras", "weight_kg": 400, "destination": "ilaga" },
-    { "item": "Beras", "weight_kg": 400, "destination": "Sinak" },
-    { "item": "Mie Instan", "weight_kg": 100, "destination": "sinak" },
-    { "item": "Minyak Goreng", "weight_kg": 100, "destination": "wamena" }
-  ],
-  "total_payload_kg": 1200
+  ]
 }

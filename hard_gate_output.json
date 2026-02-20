@@ -2,80 +2,14 @@
   "mission_id": "LOG-PAPUA-001",
   "hard_gate_summary": {
     "Cessna 208b": {
-      "wamena": {
-        "mass_compliance": {
-          "status": "PASS",
-          "details": {
-            "gross_weight": 3770,
-            "mtow": 3969,
-            "mlw": 3856,
-            "lambda_w": 0.95,
-            "cg_current": 25,
-            "cg_limits": [
-              20,
-              30
-            ]
-          }
-        },
-        "takeoff_performance": {
-          "status": "PASS",
-          "details": {
-            "density_altitude_ft": 8257.14,
-            "lambda_w": 0.95,
-            "base_takeoff_m": 730,
-            "da_factor": 0.826,
-            "required_takeoff_m": 1202.48,
-            "runway_length_m": 2175,
-            "runway_margin_m": 972.52
-          }
-        },
-        "runway_feasibility": {
-          "status": "PASS",
-          "details": {
-            "required_landing_m": 1387.34,
-            "runway_length_m": 2175,
-            "landing_margin_m": 787.66
-          }
-        },
-        "climb_margin": {
-          "status": "PASS",
-          "details": {
-            "roc_corrected_fpm": 636.23,
-            "delta_altitude_ft": 5332,
-            "G_required": 0.007,
-            "G_available": 0.0449,
-            "climb_margin": 0.0379
-          }
-        },
-        "fuel_compliance": {
-          "status": "PASS",
-          "details": {
-            "trip_fuel_kg": 162.21,
-            "reserve_fuel_kg": 135.0,
-            "total_required_kg": 297.21,
-            "fuel_onboard_kg": 500,
-            "fuel_margin_kg": 202.79
-          }
-        },
-        "visual_weather_rules": {
-          "status": "PASS",
-          "details": {
-            "visibility_km": 10,
-            "min_visibility_required": 5,
-            "wind_speed_kt": 10.89,
-            "max_crosswind_kt": 20
-          }
-        },
-        "hard_gate_overall_status": "PASS"
-      },
       "sinak": {
         "mass_compliance": {
           "status": "PASS",
           "details": {
-            "gross_weight": 3770,
+            "gross_weight": 3570,
             "mtow": 3969,
             "mlw": 3856,
-            "lambda_w": 0.95,
+            "lambda_w": 0.899,
             "cg_current": 25,
             "cg_limits": [
               20,
@@ -84,23 +18,23 @@
           }
         },
         "takeoff_performance": {
-          "status": "FAIL",
+          "status": "PASS",
           "details": {
             "density_altitude_ft": 9814.29,
-            "lambda_w": 0.95,
+            "lambda_w": 0.899,
             "base_takeoff_m": 730,
             "da_factor": 0.981,
-            "required_takeoff_m": 1305.03,
+            "required_takeoff_m": 1170.24,
             "runway_length_m": 1305,
-            "runway_margin_m": -0.03
+            "runway_margin_m": 134.76
           }
         },
         "runway_feasibility": {
           "status": "FAIL",
           "details": {
-            "required_landing_m": 1505.67,
+            "required_landing_m": 1425.79,
             "runway_length_m": 1305,
-            "landing_margin_m": -200.67
+            "landing_margin_m": -120.79
           }
         },
         "climb_margin": {
@@ -138,10 +72,10 @@
         "mass_compliance": {
           "status": "PASS",
           "details": {
-            "gross_weight": 3770,
+            "gross_weight": 3570,
             "mtow": 3969,
             "mlw": 3856,
-            "lambda_w": 0.95,
+            "lambda_w": 0.899,
             "cg_current": 25,
             "cg_limits": [
               20,
@@ -153,20 +87,20 @@
           "status": "FAIL",
           "details": {
             "density_altitude_ft": 11268.34,
-            "lambda_w": 0.95,
+            "lambda_w": 0.899,
             "base_takeoff_m": 730,
             "da_factor": 1.127,
-            "required_takeoff_m": 1400.8,
+            "required_takeoff_m": 1256.12,
             "runway_length_m": 1205,
-            "runway_margin_m": -195.8
+            "runway_margin_m": -51.12
           }
         },
         "runway_feasibility": {
           "status": "FAIL",
           "details": {
-            "required_landing_m": 1616.16,
+            "required_landing_m": 1530.42,
             "runway_length_m": 1205,
-            "landing_margin_m": -411.16
+            "landing_margin_m": -325.42
           }
         },
         "climb_margin": {
@@ -199,63 +133,82 @@
           }
         },
         "hard_gate_overall_status": "FAIL"
-      }
-    },
-    "EC725 Caracal": {
+      },
       "wamena": {
         "mass_compliance": {
           "status": "PASS",
           "details": {
-            "gross_weight": 7500,
-            "mtow": 11000,
-            "lambda_w": 0.682
+            "gross_weight": 3570,
+            "mtow": 3969,
+            "mlw": 3856,
+            "lambda_w": 0.899,
+            "cg_current": 25,
+            "cg_limits": [
+              20,
+              30
+            ]
           }
         },
-        "power_check": {
+        "takeoff_performance": {
           "status": "PASS",
           "details": {
             "density_altitude_ft": 8257.14,
-            "sigma": 0.78,
-            "engine_power": 4200.0,
-            "power_available": 3275.23,
-            "power_required": 2364.57,
-            "power_margin_ratio": 0.278
+            "lambda_w": 0.899,
+            "base_takeoff_m": 730,
+            "da_factor": 0.826,
+            "required_takeoff_m": 1078.28,
+            "runway_length_m": 2175,
+            "runway_margin_m": 1096.72
           }
         },
-        "oge_feasibility": {
+        "runway_feasibility": {
           "status": "PASS",
           "details": {
-            "Wmax_OGE": 8577.98,
-            "Wg": 7500,
-            "oge_margin_ratio": 0.126
+            "required_landing_m": 1313.74,
+            "runway_length_m": 2175,
+            "landing_margin_m": 861.26
+          }
+        },
+        "climb_margin": {
+          "status": "PASS",
+          "details": {
+            "roc_corrected_fpm": 636.23,
+            "delta_altitude_ft": 5332,
+            "G_required": 0.007,
+            "G_available": 0.0449,
+            "climb_margin": 0.0379
           }
         },
         "fuel_compliance": {
           "status": "PASS",
           "details": {
-            "trip_fuel_kg": 565.56,
-            "reserve_fuel_kg": 325.0,
-            "total_required_kg": 890.56,
-            "fuel_onboard_kg": 1000,
-            "fuel_margin_kg": 109.44
+            "trip_fuel_kg": 162.21,
+            "reserve_fuel_kg": 135.0,
+            "total_required_kg": 297.21,
+            "fuel_onboard_kg": 500,
+            "fuel_margin_kg": 202.79
           }
         },
         "visual_weather_rules": {
           "status": "PASS",
           "details": {
             "visibility_km": 10,
-            "wind_speed_kt": 10.89
+            "min_visibility_required": 5,
+            "wind_speed_kt": 10.89,
+            "max_crosswind_kt": 20
           }
         },
         "hard_gate_overall_status": "PASS"
-      },
+      }
+    },
+    "EC725 Caracal": {
       "sinak": {
         "mass_compliance": {
           "status": "PASS",
           "details": {
-            "gross_weight": 7500,
+            "gross_weight": 7300,
             "mtow": 11000,
-            "lambda_w": 0.682
+            "lambda_w": 0.664
           }
         },
         "power_check": {
@@ -265,16 +218,16 @@
             "sigma": 0.743,
             "engine_power": 4200.0,
             "power_available": 3119.94,
-            "power_required": 2364.57,
-            "power_margin_ratio": 0.242
+            "power_required": 2270.62,
+            "power_margin_ratio": 0.272
           }
         },
         "oge_feasibility": {
           "status": "PASS",
           "details": {
             "Wmax_OGE": 8171.28,
-            "Wg": 7500,
-            "oge_margin_ratio": 0.082
+            "Wg": 7300,
+            "oge_margin_ratio": 0.107
           }
         },
         "fuel_compliance": {
@@ -300,9 +253,9 @@
         "mass_compliance": {
           "status": "PASS",
           "details": {
-            "gross_weight": 7500,
+            "gross_weight": 7300,
             "mtow": 11000,
-            "lambda_w": 0.682
+            "lambda_w": 0.664
           }
         },
         "power_check": {
@@ -312,16 +265,16 @@
             "sigma": 0.71,
             "engine_power": 4200.0,
             "power_available": 2980.08,
-            "power_required": 2364.57,
-            "power_margin_ratio": 0.207
+            "power_required": 2270.62,
+            "power_margin_ratio": 0.238
           }
         },
         "oge_feasibility": {
           "status": "PASS",
           "details": {
             "Wmax_OGE": 7804.98,
-            "Wg": 7500,
-            "oge_margin_ratio": 0.039
+            "Wg": 7300,
+            "oge_margin_ratio": 0.065
           }
         },
         "fuel_compliance": {
@@ -339,6 +292,53 @@
           "details": {
             "visibility_km": 6,
             "wind_speed_kt": 6.03
+          }
+        },
+        "hard_gate_overall_status": "PASS"
+      },
+      "wamena": {
+        "mass_compliance": {
+          "status": "PASS",
+          "details": {
+            "gross_weight": 7300,
+            "mtow": 11000,
+            "lambda_w": 0.664
+          }
+        },
+        "power_check": {
+          "status": "PASS",
+          "details": {
+            "density_altitude_ft": 8257.14,
+            "sigma": 0.78,
+            "engine_power": 4200.0,
+            "power_available": 3275.23,
+            "power_required": 2270.62,
+            "power_margin_ratio": 0.307
+          }
+        },
+        "oge_feasibility": {
+          "status": "PASS",
+          "details": {
+            "Wmax_OGE": 8577.98,
+            "Wg": 7300,
+            "oge_margin_ratio": 0.149
+          }
+        },
+        "fuel_compliance": {
+          "status": "PASS",
+          "details": {
+            "trip_fuel_kg": 565.56,
+            "reserve_fuel_kg": 325.0,
+            "total_required_kg": 890.56,
+            "fuel_onboard_kg": 1000,
+            "fuel_margin_kg": 109.44
+          }
+        },
+        "visual_weather_rules": {
+          "status": "PASS",
+          "details": {
+            "visibility_km": 10,
+            "wind_speed_kt": 10.89
           }
         },
         "hard_gate_overall_status": "PASS"

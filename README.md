@@ -75,61 +75,44 @@ Menghitung skor akhir misi.
 
 ---
 
-## Objective Formulas
+## Objective & Scenario Mode
 
-Sistem menggunakan 5 parameter objektif dengan rumus sebagai berikut:
+Sistem menggunakan **Scenario-Based Optimization** untuk menentukan bobot prioritas misi secara otomatis.
 
-### 1. Delivery & Payload
+### Available Scenarios:
 
-Mengukur efektivitas pengiriman kargo.
+1.  **Emergency**: Prioritas utama pada **Safety (35%)** dan **Waktu (40%)**.
+2.  **Logistic**: Prioritas pada **Payload (50%)** dan efisiensi biaya.
+3.  **HighRisk Weather**: Prioritas mutlak pada **Safety (60%)**.
+4.  **Budget**: Fokus pada **Fuel Efficiency (50%)**.
+5.  **Balanced**: Semua aspek memiliki bobot setara (20%).
 
-```python
-Score = min(1, Payload_Delivered / Payload_Planned)
-```
+_Input_: Set `scenario_id` pada `payloads.json`.
 
-_Target: Memaksimalkan muatan dalam satu penerbangan._
+---
 
-### 2. Temporal Efficiency
+## Output Structure
 
-Mengukur kecepatan dan efisiensi waktu misi.
+Output utama (`simulation_mission_planning_output.json`) kini mencakup:
 
-```python
-Score = 1 / (1 + Total_Mission_Time_Hr)
-```
+### 1. Global Summary
 
-_Target: Meminimalkan waktu tempuh._
+Ringkasan eksekutif status misi secara keseluruhan.
 
-### 3. Fuel Efficiency
+- **Operational Status**: GO / NO-GO.
+- **Total Risk Index**: Tingkat risiko agregat.
+- **Selected Strategy**: Single Fleet vs Multi-Fleet.
 
-Mengukur efisiensi penggunaan bahan bakar per kg payload.
+### 2. Aircraft Allocation
 
-```python
-Ratio = Fuel_Used / Payload_Delivered
-Score = 1 / (1 + Ratio)
-```
+Rekomendasi pembagian tugas antar pesawat.
 
-_Target: Hemat bahan bakar._
+- **Strategy**: Apakah menggunakan satu pesawat atau kombinasi.
+- **Reasoning**: Alasan pemilihan strategi (misal: "Pesawat A tidak mampu membawa beban penuh").
 
-### 4. Environmental Risk
+### 3. Detailed Leg Analysis
 
-Mengukur paparan terhadap risiko lingkungan (Cuaca, Terrain, Density Altitude).
-
-```python
-Risk = (0.4 * DA_Factor) + (0.4 * Wind_Factor) + (0.2 * Terrain_Factor)
-Score = max(0, 1 - Risk)
-```
-
-_Target: Menghindari cuaca buruk dan terrain berbahaya._
-
-### 5. Safety Margin
-
-Mengukur seberapa jauh operasi dari batas fisik pesawat.
-
-```python
-Score = max(0, Minimum_Margin_Value)
-```
-
-_Target: Memaksimalkan buffer keselamatan._
+Termasuk informasi **Tactical Layer** (Threat Level, Hotspot Proximity) untuk setiap segmen penerbangan.
 
 ---
 

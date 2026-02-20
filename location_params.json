@@ -10,7 +10,6 @@
       "runway_heading_deg": 140,
       "weather": { "oat_c": 35, "qnh_hpa": 1009, "wind_speed_mps": 3.6, "visibility_km": 9 }
     },
-
     "ilaga": {
       "name": "Ilaga",
       "icao": "WAYL",
@@ -32,7 +31,6 @@
       "runway_heading_deg": 150,
       "weather": { "oat_c": 26, "qnh_hpa": 1006, "wind_speed_mps": 5.6, "visibility_km": 10 }
     },
-
     "sinak": {
       "name": "Sinak",
       "icao": "WABS",

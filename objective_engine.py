@@ -50,14 +50,47 @@ final_output = {
     "objective_scores": {}
 }
 
-# Default Hybrid Weights
-weights = {
-    "delivery": 0.25,
-    "temporal": 0.20,
-    "fuel_efficiency": 0.20,
-    "environmental": 0.20,
-    "safety": 0.15
+SCENARIO_WEIGHTS = {
+    "Emergency": {
+        "safety": 0.35,
+        "temporal": 0.40,
+        "delivery": 0.05,
+        "fuel_efficiency": 0.05,
+        "environmental": 0.15
+    },
+    "Logistic": {
+        "safety": 0.20,
+        "temporal": 0.10,
+        "delivery": 0.50,
+        "fuel_efficiency": 0.20,
+        "environmental": 0.00
+    },
+    "HighRisk Weather": {
+        "safety": 0.60,
+        "temporal": 0.15,
+        "delivery": 0.15,
+        "fuel_efficiency": 0.10,
+        "environmental": 0.00
+    },
+    "Budget": {
+        "safety": 0.20,
+        "temporal": 0.10,
+        "delivery": 0.20,
+        "fuel_efficiency": 0.50,
+        "environmental": 0.00
+    },
+    "Balanced": {
+        "safety": 0.20,
+        "temporal": 0.20,
+        "delivery": 0.20,
+        "fuel_efficiency": 0.20,
+        "environmental": 0.20
+    }
 }
+
+# Select weights based on scenario
+scenario_id = mission_data.get("scenario_id", "Balanced")
+weights = SCENARIO_WEIGHTS.get(scenario_id, SCENARIO_WEIGHTS["Balanced"])
 
 for aircraft_name, mission_result in dynamic_data["dynamic_mission_result"].items():
 
@@ -106,6 +139,7 @@ for aircraft_name, mission_result in dynamic_data["dynamic_mission_result"].item
     final_score = compute_final_score(scores, weights)
 
     final_output["objective_scores"][aircraft_name] = {
+        "scenario": scenario_id,
         "weights": weights,
         "components": {
             "delivery": round(delivery_score, 4),

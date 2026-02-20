@@ -5,7 +5,7 @@
       "minimum_margin_section": {
         "metric": "runway_feasibility",
         "location": "ilaga",
-        "value": -0.2544
+        "value": -0.2126
       },
       "highest_tactical_risk_section": {
         "location": "wamena",
@@ -38,7 +38,7 @@
       "minimum_margin_section": {
         "metric": "oge_feasibility",
         "location": "ilaga",
-        "value": 0.039
+        "value": 0.065
       },
       "highest_tactical_risk_section": {
         "location": "wamena",

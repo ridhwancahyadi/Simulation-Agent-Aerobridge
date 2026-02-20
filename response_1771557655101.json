@@ -1,0 +1,578 @@
+{
+  "mission_data": "demo-001",
+  "agent_analysis": [
+    {
+      "aircraft_name": "EC725 Caracal",
+      "aircraft_type": "rotary",
+      "route_overview": {
+        "route_sequence": [
+          "Timika to Wamena",
+          "Wamena to Ilaga"
+        ],
+        "mission_status": "PASS",
+        "combined_score": 0.61494,
+        "key_constraints": [
+          "margin minimum",
+          "ketersediaan bahan bakar",
+          "kondisi cuaca"
+        ]
+      },
+      "departure_time_recommendations": [
+        {
+          "leg_index": 0,
+          "origin": "Timika",
+          "destination": "Wamena",
+          "recommended_window_local": {
+            "start_hhmm": "06:00",
+            "end_hhmm": "09:00"
+          },
+          "recommendation_text": "Disarankan untuk berangkat pagi untuk menghindari suhu tinggi dan memastikan margin yang cukup.",
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].computed.density_altitude_ft",
+              "value": "6677.73952"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].min_margin",
+              "value": "0.144778481035972"
+            }
+          ],
+          "confidence": "medium"
+        },
+        {
+          "leg_index": 1,
+          "origin": "Wamena",
+          "destination": "Ilaga",
+          "recommended_window_local": {
+            "start_hhmm": "06:00",
+            "end_hhmm": "09:00"
+          },
+          "recommendation_text": "Disarankan untuk berangkat pagi untuk menghindari suhu tinggi dan memastikan margin yang cukup.",
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].computed.density_altitude_ft",
+              "value": "9277.4184"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].min_margin",
+              "value": "0.17902969882895386"
+            }
+          ],
+          "confidence": "medium"
+        }
+      ],
+      "pilot_heads_up": [
+        {
+          "leg_index": 0,
+          "items": [
+            "Margin minimum ketat: 0.1448",
+            "Ketersediaan bahan bakar cukup, tetapi harus diperhatikan.",
+            "Kondisi cuaca: visibilitas 6 km, kecepatan angin 9.7 kt."
+          ],
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].min_margin",
+              "value": "0.144778481035972"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].fuel_remaining_kg",
+              "value": "968.25"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].hard_gate.visual_weather_rules.details.visibility_km",
+              "value": "6.0"
+            }
+          ]
+        },
+        {
+          "leg_index": 1,
+          "items": [
+            "Margin minimum baik: 0.1790",
+            "Ketersediaan bahan bakar cukup, tetapi harus diperhatikan.",
+            "Kondisi cuaca: visibilitas 5 km, kecepatan angin 11.7 kt."
+          ],
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].min_margin",
+              "value": "0.17902969882895386"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].fuel_remaining_kg",
+              "value": "490.3"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].hard_gate.visual_weather_rules.details.visibility_km",
+              "value": "5.0"
+            }
+          ]
+        }
+      ],
+      "mitigations_and_actions": [
+        {
+          "leg_index": 0,
+          "actions": [
+            "Pertimbangkan pengurangan payload jika margin semakin ketat.",
+            "Konfirmasi kondisi cuaca sebelum keberangkatan."
+          ],
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].min_margin",
+              "value": "0.144778481035972"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].hard_gate.visual_weather_rules.details.visibility_km",
+              "value": "6.0"
+            }
+          ]
+        },
+        {
+          "leg_index": 1,
+          "actions": [
+            "Pertimbangkan pengurangan payload jika margin semakin ketat.",
+            "Konfirmasi kondisi cuaca sebelum keberangkatan."
+          ],
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].min_margin",
+              "value": "0.17902969882895386"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].hard_gate.visual_weather_rules.details.visibility_km",
+              "value": "5.0"
+            }
+          ]
+        }
+      ],
+      "contingencies": [
+        {
+          "trigger": "Jika visibilitas di bawah 5 km.",
+          "action": "Tunda keberangkatan hingga kondisi membaik.",
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].hard_gate.visual_weather_rules.details.visibility_km",
+              "value": "5.0"
+            }
+          ]
+        },
+        {
+          "trigger": "Jika bahan bakar tersisa kurang dari 225 kg.",
+          "action": "Diversi ke lokasi alternatif untuk pengisian bahan bakar.",
+          "evidence": [
+            {
+              "path": "$.simulation_result[0].simulation.legs[0].fuel_remaining_kg",
+              "value": "968.25"
+            },
+            {
+              "path": "$.simulation_result[0].simulation.legs[1].fuel_remaining_kg",
+              "value": "490.3"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "top_candidates": [
+    {
+      "aircraft_name": "EC725 Caracal",
+      "aircraft_type": "rotary",
+      "route": [
+        {
+          "destination": "wamena",
+          "weight_kg": 300
+        },
+        {
+          "destination": "ilaga",
+          "weight_kg": 200
+        }
+      ],
+      "simulation": {
+        "mission_status": "PASS",
+        "fuel_used": 1109.7,
+        "time_hr": 1.466,
+        "distance_nm": 205.24,
+        "payload_delivered": 500,
+        "min_margin": 0.144778481035972,
+        "weakest_leg": {
+          "origin": "Timika",
+          "destination": "Wamena",
+          "min_margin": 0.144778481035972,
+          "hard_gate": {
+            "hard_gate_overall_status": "PASS",
+            "sections": {
+              "mass_compliance": {
+                "status": "PASS",
+                "details": {
+                  "Wg": 6768.2546279673925,
+                  "lambda_w": 0.6152958752697629
+                }
+              },
+              "power_margin": {
+                "status": "PASS",
+                "details": {
+                  "p_available": 4200,
+                  "p_required": 0.6563837310975817,
+                  "p_margin": 0.9998437181592624
+                }
+              },
+              "oge_hover_feasibility": {
+                "status": "PASS",
+                "details": {
+                  "oge_max": 7914.036864,
+                  "Wg": 6768.2546279673925,
+                  "oge_buffer": 0.144778481035972
+                }
+              },
+              "fuel_compliance": {
+                "status": "PASS",
+                "details": {
+                  "fuel_onboard": 968.2546279673927,
+                  "fuel_required": 631.7453720326073,
+                  "trip_fuel": 406.7453720326073,
+                  "reserve_fuel": 225
+                }
+              },
+              "visual_weather_rules": {
+                "status": "PASS",
+                "details": {
+                  "visibility_km": 6,
+                  "wind_speed_kt": 9.7192,
+                  "crosswind_lim_kt": 35
+                }
+              }
+            },
+            "computed": {
+              "density_altitude_ft": 6677.73952
+            }
+          }
+        },
+        "legs": [
+          {
+            "origin": "Timika",
+            "destination": "Wamena",
+            "distance_nm": 126.54,
+            "leg_time_hr": 0.904,
+            "payload_kg": 500,
+            "fuel_needed_kg": 631.75,
+            "fuel_alternate_kg": 0,
+            "fuel_reserve_kg": 225,
+            "fuel_required_total_kg": 856.75,
+            "fuel_remaining_kg": 968.25,
+            "min_margin": 0.144778481035972,
+            "hard_gate": {
+              "hard_gate_overall_status": "PASS",
+              "sections": {
+                "mass_compliance": {
+                  "status": "PASS",
+                  "details": {
+                    "Wg": 6768.2546279673925,
+                    "lambda_w": 0.6152958752697629
+                  }
+                },
+                "power_margin": {
+                  "status": "PASS",
+                  "details": {
+                    "p_available": 4200,
+                    "p_required": 0.6563837310975817,
+                    "p_margin": 0.9998437181592624
+                  }
+                },
+                "oge_hover_feasibility": {
+                  "status": "PASS",
+                  "details": {
+                    "oge_max": 7914.036864,
+                    "Wg": 6768.2546279673925,
+                    "oge_buffer": 0.144778481035972
+                  }
+                },
+                "fuel_compliance": {
+                  "status": "PASS",
+                  "details": {
+                    "fuel_onboard": 968.2546279673927,
+                    "fuel_required": 631.7453720326073,
+                    "trip_fuel": 406.7453720326073,
+                    "reserve_fuel": 225
+                  }
+                },
+                "visual_weather_rules": {
+                  "status": "PASS",
+                  "details": {
+                    "visibility_km": 6,
+                    "wind_speed_kt": 9.7192,
+                    "crosswind_lim_kt": 35
+                  }
+                }
+              },
+              "computed": {
+                "density_altitude_ft": 6677.73952
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "origin": "Wamena",
+            "destination": "Ilaga",
+            "distance_nm": 78.7,
+            "leg_time_hr": 0.562,
+            "payload_kg": 200,
+            "fuel_needed_kg": 477.95,
+            "fuel_alternate_kg": 0,
+            "fuel_reserve_kg": 225,
+            "fuel_required_total_kg": 702.95,
+            "fuel_remaining_kg": 490.3,
+            "min_margin": 0.17902969882895386,
+            "hard_gate": {
+              "hard_gate_overall_status": "PASS",
+              "sections": {
+                "mass_compliance": {
+                  "status": "PASS",
+                  "details": {
+                    "Wg": 5990.302678864709,
+                    "lambda_w": 0.5445729708058826
+                  }
+                },
+                "power_margin": {
+                  "status": "PASS",
+                  "details": {
+                    "p_available": 4200,
+                    "p_required": 0.5950952838008542,
+                    "p_margin": 0.999858310646714
+                  }
+                },
+                "oge_hover_feasibility": {
+                  "status": "PASS",
+                  "details": {
+                    "oge_max": 7296.61313,
+                    "Wg": 5990.302678864709,
+                    "oge_buffer": 0.17902969882895386
+                  }
+                },
+                "fuel_compliance": {
+                  "status": "PASS",
+                  "details": {
+                    "fuel_onboard": 490.3026788647095,
+                    "fuel_required": 477.9519491026832,
+                    "trip_fuel": 252.95194910268324,
+                    "reserve_fuel": 225
+                  }
+                },
+                "visual_weather_rules": {
+                  "status": "PASS",
+                  "details": {
+                    "visibility_km": 5,
+                    "wind_speed_kt": 11.66304,
+                    "crosswind_lim_kt": 35
+                  }
+                }
+              },
+              "computed": {
+                "density_altitude_ft": 9277.4184
+              }
+            },
+            "status": "PASS"
+          }
+        ]
+      },
+      "score": {
+        "delivery": 1,
+        "temporal": 0.40551500405515,
+        "fuel_efficiency": 0.31061688513387586,
+        "environmental": 1,
+        "safety": 0.144778481035972
+      },
+      "combined_score": 0.61494
+    }
+  ],
+  "input_params": {
+    "mission_data": {
+      "mission_id": "demo-001",
+      "origin": "timika",
+      "deliveries": [
+        {
+          "destination": "wamena",
+          "weight_kg": 300
+        },
+        {
+          "destination": "ilaga",
+          "weight_kg": 200
+        }
+      ],
+      "assigned_fleet": [
+        {
+          "aircraft_name": "Cessna 208B",
+          "type": "Fixed Wing"
+        },
+        {
+          "aircraft_name": "EC725 Caracal",
+          "type": "Rotary Wing"
+        }
+      ],
+      "objective_mode": "Delivery",
+      "objective_weights": {
+        "delivery": 0.3,
+        "environmental": 0.15,
+        "fuel_efficiency": 0.2,
+        "safety": 0.15,
+        "temporal": 0.2
+      }
+    },
+    "aircraft_data": {
+      "Fixed Wing": {
+        "Cessna 208B": {
+          "CG Current": {
+            "value": 50
+          },
+          "CG Max": {
+            "value": 90
+          },
+          "CG Min": {
+            "value": 10
+          },
+          "Crosswind Limit (kt)": {
+            "value": 25
+          },
+          "Cruise Speed (kt)": {
+            "value": 175
+          },
+          "Empty Weight (OEW)": {
+            "value": 2070
+          },
+          "Fuel Capacity": {
+            "value": 1000
+          },
+          "Fuel Flow (kg/hr)": {
+            "value": 260
+          },
+          "Landing Roll (m)": {
+            "value": 700
+          },
+          "Max Landing Weight": {
+            "value": 3856
+          },
+          "Max Takeoff Weight (MTOW)": {
+            "value": 3969
+          },
+          "Rate of Climb (fpm)": {
+            "value": 800
+          },
+          "Reserve (min)": {
+            "value": 45
+          },
+          "Takeoff Roll (m)": {
+            "value": 800
+          }
+        }
+      },
+      "Rotary Wing": {
+        "EC725 Caracal": {
+          "CG Current": {
+            "value": 50
+          },
+          "CG Max": {
+            "value": 90
+          },
+          "CG Min": {
+            "value": 10
+          },
+          "Crosswind Limit (kt)": {
+            "value": 35
+          },
+          "Cruise Speed (kt)": {
+            "value": 140
+          },
+          "Empty Weight": {
+            "value": 5300
+          },
+          "Fuel Capacity": {
+            "value": 1600
+          },
+          "Fuel Flow (kg/hr)": {
+            "value": 450
+          },
+          "MTOW": {
+            "value": 11000
+          },
+          "Max Continuous Power": {
+            "value": "2x2100"
+          },
+          "OGE Max Weight": {
+            "value": 9500
+          },
+          "Rate of Climb (fpm)": {
+            "value": 1200
+          },
+          "Reserve (min)": {
+            "value": 30
+          }
+        }
+      }
+    },
+    "location_data": {
+      "locations": {
+        "ilaga": {
+          "climb_req": 0.05,
+          "coords": [
+            -3.905,
+            137.658
+          ],
+          "elevation_ft": 7350,
+          "name": "Ilaga",
+          "runway_m": 850,
+          "weather": {
+            "oat_c": 16,
+            "qnh_hpa": 1011,
+            "visibility_km": 5,
+            "wind_speed_mps": 6
+          }
+        },
+        "jayapura": {
+          "climb_req": 0.03,
+          "coords": [
+            -2.576,
+            140.516
+          ],
+          "elevation_ft": 289,
+          "name": "Jayapura",
+          "runway_m": 2500,
+          "weather": {
+            "oat_c": 29,
+            "qnh_hpa": 1010,
+            "visibility_km": 10,
+            "wind_speed_mps": 4
+          }
+        },
+        "timika": {
+          "climb_req": 0.03,
+          "coords": [
+            -4.528,
+            136.887
+          ],
+          "elevation_ft": 103,
+          "name": "Timika",
+          "runway_m": 2200,
+          "weather": {
+            "oat_c": 28,
+            "qnh_hpa": 1010,
+            "visibility_km": 8,
+            "wind_speed_mps": 3
+          }
+        },
+        "wamena": {
+          "climb_req": 0.04,
+          "coords": [
+            -4.102,
+            138.957
+          ],
+          "elevation_ft": 5080,
+          "name": "Wamena",
+          "runway_m": 1850,
+          "weather": {
+            "oat_c": 18,
+            "qnh_hpa": 1012,
+            "visibility_km": 6,
+            "wind_speed_mps": 5
+          }
+        }
+      }
+    }
+  }
+}

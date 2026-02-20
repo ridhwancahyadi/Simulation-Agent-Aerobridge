@@ -2,11 +2,11 @@
   "mission_id": "LOG-PAPUA-001",
   "dynamic_mission_result": {
     "Cessna 208b": {
-      "mission_status": "FAIL_RETURN_BASE",
-      "final_fuel_remaining": 279.18,
-      "total_fuel_used_kg": 220.82,
-      "total_time_hr": 1.32,
-      "total_distance_nm": 139.56,
+      "mission_status": "FAIL_HARD_GATE",
+      "final_fuel_remaining": 329.37,
+      "total_fuel_used_kg": 391.45,
+      "total_time_hr": 2.31,
+      "total_distance_nm": 265.72,
       "total_payload_delivered_kg": 1000,
       "legs": [
         {
@@ -14,63 +14,76 @@
           "to": "ilaga",
           "fuel_used": 107.82,
           "fuel_remaining": 392.18,
-          "hard_gate_status": "FAIL"
+          "hard_gate_status": "FAIL",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         },
         {
           "from": "ilaga",
           "to": "sinak",
           "fuel_used": 21.86,
-          "fuel_remaining": 370.31,
-          "hard_gate_status": "PASS"
-        },
-        {
-          "from": "sinak",
-          "to": "sinak",
-          "fuel_used": 0.0,
-          "fuel_remaining": 370.31,
-          "hard_gate_status": "PASS"
+          "fuel_remaining": 478.14,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         },
         {
           "from": "sinak",
           "to": "wamena",
           "fuel_used": 91.13,
-          "fuel_remaining": 279.18,
-          "hard_gate_status": "PASS"
+          "fuel_remaining": 408.87,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         }
       ]
     },
     "EC725 Caracal": {
-      "mission_status": "FAIL_RETURN_BASE",
-      "final_fuel_remaining": 543.36,
-      "total_fuel_used_kg": 456.64,
-      "total_time_hr": 0.67,
-      "total_distance_nm": 70.97,
-      "total_payload_delivered_kg": 900,
+      "mission_status": "PASS",
+      "final_fuel_remaining": 415.18,
+      "total_fuel_used_kg": 1313.83,
+      "total_time_hr": 2.1,
+      "total_distance_nm": 265.72,
+      "total_payload_delivered_kg": 1000,
       "legs": [
         {
           "from": "timika",
           "to": "ilaga",
           "fuel_used": 339.88,
           "fuel_remaining": 660.12,
-          "hard_gate_status": "PASS"
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         },
         {
           "from": "ilaga",
           "to": "sinak",
           "fuel_used": 74.93,
-          "fuel_remaining": 585.19,
-          "hard_gate_status": "PASS"
+          "fuel_remaining": 925.07,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         },
         {
           "from": "sinak",
-          "to": "sinak",
-          "fuel_used": 0.0,
-          "fuel_remaining": 585.19,
-          "hard_gate_status": "PASS"
-        },
-        {
-          "diverted_to": "mulia",
-          "reason": "Insufficient fuel for planned leg"
+          "to": "wamena",
+          "fuel_used": 314.21,
+          "fuel_remaining": 685.79,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         }
       ]
     }

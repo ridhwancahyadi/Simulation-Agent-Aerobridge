@@ -2,38 +2,40 @@
   "mission_id": "LOG-PAPUA-001",
   "objective_scores": {
     "Cessna 208b": {
+      "scenario": "Emergency",
       "weights": {
-        "delivery": 0.25,
-        "temporal": 0.2,
-        "fuel_efficiency": 0.2,
-        "environmental": 0.2,
-        "safety": 0.15
+        "safety": 0.35,
+        "temporal": 0.4,
+        "delivery": 0.05,
+        "fuel_efficiency": 0.05,
+        "environmental": 0.15
       },
       "components": {
-        "delivery": 0.8333,
+        "delivery": 1,
         "temporal": 1.0,
-        "fuel_efficiency": 0.8191,
+        "fuel_efficiency": 0.7187,
         "environmental": 0.6117,
         "safety": 0
       },
-      "final_score": 0.6945
+      "final_score": 0.5777
     },
     "EC725 Caracal": {
+      "scenario": "Emergency",
       "weights": {
-        "delivery": 0.25,
-        "temporal": 0.2,
-        "fuel_efficiency": 0.2,
-        "environmental": 0.2,
-        "safety": 0.15
+        "safety": 0.35,
+        "temporal": 0.4,
+        "delivery": 0.05,
+        "fuel_efficiency": 0.05,
+        "environmental": 0.15
       },
       "components": {
-        "delivery": 0.75,
+        "delivery": 1,
         "temporal": 1.0,
-        "fuel_efficiency": 0.6634,
+        "fuel_efficiency": 0.4322,
         "environmental": 0.5694,
-        "safety": 0.039
+        "safety": 0.065
       },
-      "final_score": 0.6399
+      "final_score": 0.5798
     }
   }
 }

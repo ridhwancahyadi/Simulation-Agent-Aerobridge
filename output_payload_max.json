@@ -1,0 +1,512 @@
+{
+  "system_output": {
+    "version": "aerobridge.output.v2.1.3.preflight.multi_asset",
+    "analysis_mode": "pre_flight",
+    "generated_at_utc": "2026-02-18T08:30:00Z",
+    "objective_shortcut": "Payload Max",
+    "objective_mode": "Delivery and Payload",
+    "priority_weights": {
+      "delivery_and_payload": 0.65,
+      "temporal": 0.15,
+      "safety": 0.1,
+      "environmental_risk": 0.05,
+      "fuel_efficiency": 0.05
+    },
+    "recommendation_limit": 3,
+    "estimation_notes": {
+      "distance_method": "great_circle_haversine_from_location_coords",
+      "time_method": "distance/speed + climb/desc buffer + ground_time",
+      "fuel_method": "fuel burn is an estimate placeholder until performance tables are applied"
+    }
+  },
+
+  "mission_brief": {
+    "origin": "Timika (WAYY)",
+    "route_chain": [
+      "WAYY (Mozes Kilangin)",
+      "WABS (Sinak)",
+      "WAYL (Ilaga)",
+      "WAJO (Oksibil)",
+      "WAJS (Senggi)"
+    ],
+    "target_points": ["Sinak (WABS)", "Ilaga (WAYL)", "Oksibil (WAJO)", "Senggi (WAJS)"],
+    "fleet_available": [
+      { "aircraft_type": "Cessna 208B", "category": "Fixed Wing", "quantity": 1 },
+      { "aircraft_type": "EC725 Caracal", "category": "Rotary Wing", "quantity": 1 }
+    ],
+    "mission_date_local": "2026-01-27 05:00",
+    "timezone": "WIT (UTC+9)",
+    "mission_objective": "Memprioritaskan maksimum cargo uplift per sortie (sekali jalan selesai) sambil tetap menjaga misi tetap realistis dijalankan di lapangan.",
+    "payload_manifest_summary": {
+      "total_payload_delivered_kg": 575,
+      "deliveries": [
+        { "to": "WABS (Sinak)", "delivered_kg": 220, "items": ["BULOG Rice"] },
+        { "to": "WAYL (Ilaga)", "delivered_kg": 150, "items": ["Cooking Oil", "Medical Supplies"] },
+        { "to": "WAJO (Oksibil)", "delivered_kg": 135, "items": ["Tents & Blankets", "Handheld Radios (HT)"] },
+        { "to": "WAJS (Senggi)", "delivered_kg": 70, "items": ["Indomie"] }
+      ]
+    },
+    "weather_snapshot": [
+      { "location": "WAYY (Timika)", "oat_c": 31, "qnh_hpa": 1009, "wind_speed_mps": 4.1, "wind_dir_deg": 120, "visibility_km": 9 },
+      { "location": "WABS (Sinak)", "oat_c": 19, "qnh_hpa": 1007, "wind_speed_mps": 1.5, "wind_dir_deg": 190, "visibility_km": 7 },
+      { "location": "WAYL (Ilaga)", "oat_c": 17, "qnh_hpa": 1006, "wind_speed_mps": 2.8, "wind_dir_deg": 80, "visibility_km": 6 },
+      { "location": "WAJO (Oksibil)", "oat_c": 22, "qnh_hpa": 1008, "wind_speed_mps": 3.2, "wind_dir_deg": 130, "visibility_km": 8 },
+      { "location": "WAJS (Senggi)", "oat_c": 30, "qnh_hpa": 1010, "wind_speed_mps": 4.7, "wind_dir_deg": 20, "visibility_km": 10 }
+    ],
+    "computed_leg_distances_nm_est": [
+      { "from": "WAYY (Timika)", "to": "WABS (Sinak)", "distance_nm_est": 71.3 },
+      { "from": "WABS (Sinak)", "to": "WAYL (Ilaga)", "distance_nm_est": 16.0 },
+      { "from": "WAYL (Ilaga)", "to": "WAJO (Oksibil)", "distance_nm_est": 188.4 },
+      { "from": "WAJO (Oksibil)", "to": "WAJS (Senggi)", "distance_nm_est": 88.4 }
+    ],
+    "objective_parameters": {
+      "maximize_completion_in_single_window": true,
+      "prefer_rotary_for_high_elevation_strips": true,
+      "minimize_empty_repositioning_legs": true,
+      "accept_higher_fuel_if_payload_completion_improves": true
+    }
+  },
+
+  "recommendations": [
+    {
+      "name": "COA-1 One-Pass Max Uplift (Caracal runs the mountain network)",
+      "detail": "Caracal bawa beban utama dan menyelesaikan Sinak→Ilaga→Oksibil. Cessna fokus jalur yang lebih aman dan cepat untuk memastikan Senggi tetap tembus tanpa mengganggu operasi pegunungan.",
+      "purpose": "Kalau targetnya benar-benar ‘sekali jalan selesai’, ini yang paling mendekati karena semua titik bisa ditutup dalam satu window yang sama.",
+
+      "summary_global": {
+        "total_payload_delivered_kg": 575,
+        "total_fuel_burn_kg_est": 0,
+        "total_mission_time_min_est": 205,
+        "total_distance_nm_est": 590,
+        "total_risk_index_est": 0.26,
+        "operational_status": "GO",
+        "primary_reason": "Kunci payload-max itu menghindari ‘ulang sortie’. Caracal lebih cocok untuk strip tinggi, jadi kita taruh beban utama di sana supaya delivery tidak mentok di Ilaga.",
+        "objective": "Payload Max"
+      },
+
+      "executive_summary": {
+        "supporting_factors": [
+          "Secara praktis, Caracal itu ‘alat kerja’ yang lebih pas untuk bandara pegunungan—jadi peluang semua drop selesai dalam satu window lebih besar.",
+          "Cessna tidak dipaksa masuk Ilaga (yang paling sensitif). Jadi kita tidak bikin bottleneck di runway pendek.",
+          "Cuaca snapshot masih masuk akal buat jalan, cuma Ilaga memang mepet di 6 km visibility."
+        ],
+        "attention_factors": [
+          "Caracal akan banyak berhenti dan bongkar-muat. Di lapangan, justru ini yang sering bikin molor.",
+          "Ilaga itu bisa berubah cepat. Kalau visibility turun sedikit saja, COA ini yang paling gampang ‘ketahan’ karena Caracal memang harus masuk Ilaga.",
+          "Karena stop-nya banyak, exposure time rotary jadi lebih panjang."
+        ],
+        "key_mitigations": [
+          "Bongkar muatan dibuat secepat mungkin (rapid unload) di Sinak dan Ilaga—jangan sampai hover/ground time kepanjangan.",
+          "Pas sebelum masuk Ilaga, lakukan keputusan cepat: kalau trend visibility jelek, tahan dulu muatan Ilaga di Sinak.",
+          "Jangan naikin muatan ke Ilaga tanpa cek ulang margin OGE/power (karena ini titik paling sensitif)."
+        ]
+      },
+
+      "aircraft_allocation": [
+        {
+          "aircraft_type": "EC725 Caracal",
+          "quantity_used": 1,
+          "route_sequence": [
+            "WAYY (Mozes Kilangin)",
+            "WABS (Sinak)",
+            "WAYL (Ilaga)",
+            "WAJO (Oksibil)"
+          ],
+          "served_points": ["WABS (Sinak)", "WAYL (Ilaga)", "WAJO (Oksibil)"],
+          "payload_carried_kg_est": 505,
+          "payload_distribution": [
+            { "location": "WABS (Sinak)", "delivered_kg": 220, "items": ["BULOG Rice"] },
+            { "location": "WAYL (Ilaga)", "delivered_kg": 150, "items": ["Cooking Oil", "Medical Supplies"] },
+            { "location": "WAJO (Oksibil)", "delivered_kg": 135, "items": ["Tents & Blankets", "Handheld Radios (HT)"] }
+          ]
+        },
+        {
+          "aircraft_type": "Cessna 208B",
+          "quantity_used": 1,
+          "route_sequence": [
+            "WAYY (Mozes Kilangin)",
+            "WAJO (Oksibil)",
+            "WAJS (Senggi)"
+          ],
+          "served_points": ["WAJS (Senggi)"],
+          "payload_carried_kg_est": 70,
+          "payload_distribution": [
+            { "location": "WAJS (Senggi)", "delivered_kg": 70, "items": ["Indomie"] }
+          ]
+        }
+      ],
+
+      "coa_operation": {
+        "timezone": "WIT (UTC+9)",
+        "planned_departure_wit": "2026-01-27 05:00",
+        "delay_expected": "possible",
+        "delay_range_min_est": [15, 50],
+        "timeline_estimate": [
+          { "aircraft": "EC725 Caracal", "from": "WAYY", "to": "WABS", "etd": "05:00", "eta_est": "05:40" },
+          { "aircraft": "EC725 Caracal", "from": "WABS", "to": "WAYL", "etd": "06:05", "eta_est": "06:25" },
+          { "aircraft": "EC725 Caracal", "from": "WAYL", "to": "WAJO", "etd": "06:55", "eta_est": "08:25" },
+          { "aircraft": "Cessna 208B", "from": "WAYY", "to": "WAJO", "etd": "05:05", "eta_est": "06:45" },
+          { "aircraft": "Cessna 208B", "from": "WAJO", "to": "WAJS", "etd": "07:05", "eta_est": "07:50" }
+        ],
+        "likely_events": [
+          "Kalau unloading lambat (orang/alat kurang), delay paling mungkin muncul di Sinak/Ilaga.",
+          "Ilaga bisa tiba-tiba turun visibility—kalau itu terjadi, COA ini perlu hold atau bahkan skip sementara Ilaga.",
+          "Kalau Ilaga aman, biasanya COA ini terasa ‘bersih’ karena semua drop selesai dalam satu window."
+        ]
+      },
+
+      "minimum_margin": {
+        "minimum_climb_margin_percent_est": 16,
+        "minimum_runway_margin_percent_est": 24,
+        "minimum_oge_margin_percent_est": 15,
+        "minimum_fuel_reserve_margin_percent_est": 18,
+        "critical_location": "Ilaga (WAYL)",
+        "critical_leg": "WABS (Sinak) → WAYL (Ilaga)",
+        "note": "Angka margin ini masih estimasi. Nilai final harus dihitung dari weight + density altitude + performance tables."
+      },
+
+      "hard_gate_summary": {
+        "hard_gate_overall_status": "PASS_WITH_WARNING",
+        "checks": {
+          "mass_check": {
+            "status": "PASS",
+            "reason": "Secara sederhana: kita taruh beban besar di Caracal karena kapasitas angkutnya jauh lebih longgar. Cessna jadi tidak ‘keberatan’.",
+            "key_params_used": ["Caracal useful load 5500 kg", "Cessna useful load 1899 kg"],
+            "confidence": "high"
+          },
+          "cg_check": {
+            "status": "ASSUMED_PASS",
+            "reason": "Kita belum hitung CG detail. Tapi karena muatannya item-item kecil, biasanya masih bisa diatur. Kalau nanti payload makin berat, ini wajib dihitung benar.",
+            "key_params_used": ["CG policy (objective thresholds)"],
+            "confidence": "low"
+          },
+          "runway_check": {
+            "status": "PASS",
+            "reason": "Cessna tidak kita paksa masuk Ilaga. Jadi risiko ‘runway kependekan’ untuk fixed-wing bisa dibilang kita hindari dari awal.",
+            "key_params_used": ["Cessna takeoff 730 m", "Cessna landing 800 m"],
+            "confidence": "medium"
+          },
+          "climb_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Pegunungan tetap berat. Caracal memang punya climb rate lebih tinggi, tapi kalau muatan ditambah atau cuaca panas, margin bisa menipis—jadi tetap harus diawasi.",
+            "key_params_used": ["Caracal ROC 1500 fpm"],
+            "critical_leg": "Ilaga → Oksibil (terrain + jarak panjang)",
+            "confidence": "medium"
+          },
+          "oge_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Ilaga itu dekat batas hover OGE. Sekarang masih masuk, tapi ini titik yang paling cepat ‘jadi masalah’ kalau muatan naik atau temperatur berubah.",
+            "key_params_used": ["Caracal OGE ceiling 9500 ft"],
+            "confidence": "medium"
+          },
+          "fuel_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Dengan banyak stop, Caracal biasanya lebih boros (hover/handling). Jadi secara konsep bisa jalan, tapi angka fuel final wajib dihitung benar supaya reserve tidak ‘ketarik’.",
+            "key_params_used": ["reserve policy", "Caracal hover/loiter burn high"],
+            "confidence": "medium"
+          },
+          "security_check": {
+            "status": "PASS",
+            "reason": "Karena stop-nya banyak, waktu exposure bertambah. Cara nguranginya simpel: jangan lama-lama di ground, unload cepat, lalu berangkat.",
+            "key_params_used": ["exposure time policy"],
+            "confidence": "medium"
+          },
+          "weather_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Semua titik aman, kecuali Ilaga yang persis di angka 6 km. Jadi ini seperti ‘lampu kuning’: masih bisa, tapi harus siap kalau tiba-tiba drop.",
+            "key_params_used": ["visibility_km", "wind_speed_mps"],
+            "confidence": "high"
+          }
+        }
+      },
+
+      "score_breakdown": {
+        "objective_mode": "Payload Max",
+        "components": [
+          { "metric": "delivery_and_payload", "weight": 0.65, "value": 0.92 },
+          { "metric": "temporal", "weight": 0.15, "value": 0.62 },
+          { "metric": "safety", "weight": 0.1, "value": 0.70 },
+          { "metric": "environmental_risk", "weight": 0.05, "value": 0.66 },
+          { "metric": "fuel_efficiency", "weight": 0.05, "value": 0.45 }
+        ],
+        "final_score": 0.82
+      },
+
+      "tactical_layer": {
+        "hotspot_proximity_km_est": 9.5,
+        "summary_risk": "Risikonya bukan di ‘bisa atau tidak’, tapi di ‘seberapa lama kita berhenti’. Banyak stop = exposure naik.",
+        "threat_level": "YELLOW"
+      },
+
+      "environmental_conditions": {
+        "temperature_range_c": "17 - 31",
+        "max_density_altitude_ft_est": 10500,
+        "avg_wind_kts_est": 6,
+        "visibility_km_min": 6,
+        "daylight_window_min_est": 240,
+        "weather_trend": "Pagi biasanya lebih stabil. Kalau sudah mendekati siang, pegunungan sering lebih cepat berubah (awan naik)."
+      }
+    },
+
+    {
+      "name": "COA-2 Payload Max (Aggressive Split; fewer rotary stops)",
+      "detail": "Cessna bawa bulk item ke Sinak lalu lanjut Oksibil→Senggi. Caracal hanya ‘quick run’ untuk Ilaga dan drop Oksibil. Ini ngurangin stop Caracal tapi membuat Cessna harus masuk Sinak.",
+      "purpose": "Tetap payload-heavy, tetapi mengurangi beban Caracal dan biasanya lebih hemat waktu kalau Sinak aman.",
+
+      "summary_global": {
+        "total_payload_delivered_kg": 575,
+        "total_fuel_burn_kg_est": 0,
+        "total_mission_time_min_est": 195,
+        "total_distance_nm_est": 610,
+        "total_risk_index_est": 0.23,
+        "operational_status": "GO",
+        "primary_reason": "Caracal stop lebih sedikit, jadi operasi rotary lebih ‘ringan’. Namun Cessna masuk Sinak sehingga runway/climb lebih sensitif.",
+        "objective": "Payload Max"
+      },
+
+      "executive_summary": {
+        "supporting_factors": [
+          "Karena Caracal stop lebih sedikit, peluang molor karena hover/handling berkurang dibanding COA-1.",
+          "Payload tetap selesai penuh dalam satu window kalau Sinak stabil."
+        ],
+        "attention_factors": [
+          "Cessna masuk Sinak (elevasi tinggi). Kalau density altitude naik, performa takeoff/landing bisa turun dan payload mungkin harus dikurangi.",
+          "Kalau Sinak jadi bottleneck, COA ini bisa terasa lebih ‘rapuh’ daripada COA-1."
+        ],
+        "key_mitigations": [
+          "Monitor OAT/DA sebelum Cessna commit ke Sinak; kalau margin tipis, pindahkan sebagian beban ke Caracal.",
+          "Siapkan rule sederhana: ‘Sinak bukan tempat memaksa’ — kalau ragu, jangan push."
+        ]
+      },
+
+      "aircraft_allocation": [
+        {
+          "aircraft_type": "Cessna 208B",
+          "quantity_used": 1,
+          "route_sequence": ["WAYY (Mozes Kilangin)", "WABS (Sinak)", "WAJO (Oksibil)", "WAJS (Senggi)"],
+          "served_points": ["WABS (Sinak)", "WAJS (Senggi)"],
+          "payload_carried_kg_est": 290,
+          "payload_distribution": [
+            { "location": "WABS (Sinak)", "delivered_kg": 220, "items": ["BULOG Rice"] },
+            { "location": "WAJS (Senggi)", "delivered_kg": 70, "items": ["Indomie"] }
+          ]
+        },
+        {
+          "aircraft_type": "EC725 Caracal",
+          "quantity_used": 1,
+          "route_sequence": ["WABS (Sinak)", "WAYL (Ilaga)", "WAJO (Oksibil)"],
+          "served_points": ["WAYL (Ilaga)", "WAJO (Oksibil)"],
+          "payload_carried_kg_est": 285,
+          "payload_distribution": [
+            { "location": "WAYL (Ilaga)", "delivered_kg": 150, "items": ["Cooking Oil", "Medical Supplies"] },
+            { "location": "WAJO (Oksibil)", "delivered_kg": 135, "items": ["Tents & Blankets", "Handheld Radios (HT)"] }
+          ]
+        }
+      ],
+
+      "coa_operation": {
+        "timezone": "WIT (UTC+9)",
+        "planned_departure_wit": "2026-01-27 05:00",
+        "delay_expected": "possible",
+        "delay_range_min_est": [10, 40],
+        "likely_events": [
+          "Kalau temperatur naik, performa Cessna ke Sinak bisa turun dan perlu ‘trim’ payload.",
+          "Jika Sinak lancar, COA ini biasanya lebih cepat dan tidak terlalu menguras Caracal."
+        ]
+      },
+
+      "minimum_margin": {
+        "minimum_climb_margin_percent_est": 15,
+        "minimum_runway_margin_percent_est": 20,
+        "minimum_oge_margin_percent_est": 15,
+        "minimum_fuel_reserve_margin_percent_est": 20,
+        "critical_location": "Sinak (WABS)",
+        "critical_leg": "WAYY → WABS (Cessna segment)",
+        "note": "Ini COA yang paling sensitif terhadap naik-turunnya density altitude untuk fixed-wing."
+      },
+
+      "hard_gate_summary": {
+        "hard_gate_overall_status": "PASS_WITH_WARNING",
+        "checks": {
+          "runway_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Sinak runway-nya cukup di atas kertas, tapi di elevasi tinggi performa Cessna bisa turun. Jadi lulus, tapi jangan ‘overconfident’.",
+            "key_params_used": ["Cessna takeoff 730 m", "landing 800 m", "DA sensitivity 10% per 1000 ft"],
+            "confidence": "medium"
+          },
+          "climb_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Di elevasi tinggi, climb rate Cessna turun. Masih bisa, tapi margin perlu dicek terutama kalau load-nya bulk.",
+            "key_params_used": ["Cessna ROC 950 fpm", "ROC loss 4% per 1000 ft"],
+            "confidence": "medium"
+          },
+          "weather_check": {
+            "status": "PASS",
+            "reason": "Untuk Sinak, visibility 7 km dan wind rendah cukup mendukung operasi.",
+            "key_params_used": ["visibility_km", "wind_speed_mps"],
+            "confidence": "high"
+          }
+        }
+      },
+
+      "score_breakdown": {
+        "objective_mode": "Payload Max",
+        "components": [
+          { "metric": "delivery_and_payload", "weight": 0.65, "value": 0.90 },
+          { "metric": "temporal", "weight": 0.15, "value": 0.68 },
+          { "metric": "safety", "weight": 0.1, "value": 0.66 },
+          { "metric": "environmental_risk", "weight": 0.05, "value": 0.70 },
+          { "metric": "fuel_efficiency", "weight": 0.05, "value": 0.55 }
+        ],
+        "final_score": 0.80
+      },
+
+      "tactical_layer": {
+        "hotspot_proximity_km_est": 9.5,
+        "summary_risk": "COA ini lebih ringan untuk Caracal, tapi jadi lebih sensitif di sisi fixed-wing (Sinak).",
+        "threat_level": "YELLOW"
+      },
+
+      "environmental_conditions": {
+        "temperature_range_c": "17 - 31",
+        "max_density_altitude_ft_est": 10500,
+        "avg_wind_kts_est": 6,
+        "visibility_km_min": 6,
+        "daylight_window_min_est": 240,
+        "weather_trend": "Pagi stabil; kalau makin siang, risiko cuaca pegunungan naik."
+      }
+    },
+
+    {
+      "name": "COA-3 Payload Max with Contingency Hold (don’t force Ilaga)",
+      "detail": "Masih mengejar completion tinggi, tapi Ilaga dibuat conditional. Kalau Ilaga memburuk, muatannya ditahan di Sinak dan drop lain tetap jalan.",
+      "purpose": "Tetap ‘payload-max mindset’, tapi tidak mengorbankan keputusan di titik paling rawan.",
+
+      "summary_global": {
+        "total_payload_delivered_kg": 575,
+        "total_fuel_burn_kg_est": 0,
+        "total_mission_time_min_est": 220,
+        "total_distance_nm_est": 430,
+        "total_risk_index_est": 0.19,
+        "operational_status": "CONDITIONAL_GO",
+        "primary_reason": "Kita tidak memaksa Ilaga saat kondisi marginal. Yang penting, delivery lain tetap selesai dan Ilaga dikerjakan di window yang lebih aman.",
+        "objective": "Payload Max"
+      },
+
+      "executive_summary": {
+        "supporting_factors": [
+          "Lebih aman karena ada checkpoint yang mencegah forced approach di Ilaga.",
+          "Drop lain tetap bisa selesai walau Ilaga delay."
+        ],
+        "attention_factors": [
+          "Kalau Ilaga NO-GO, completion penuh memang harus nunggu window berikutnya.",
+          "Hold/loiter bisa menguras reserve kalau tidak dihitung dengan benar."
+        ],
+        "key_mitigations": [
+          "Buat aturan hold yang tegas (berapa menit, kapan abort).",
+          "Pastikan fuel reserve cukup untuk skenario hold/return."
+        ]
+      },
+
+      "aircraft_allocation": [
+        {
+          "aircraft_type": "Cessna 208B",
+          "quantity_used": 1,
+          "route_sequence": ["WAYY (Mozes Kilangin)", "WABS (Sinak)", "WAJO (Oksibil)", "WAJS (Senggi)"],
+          "served_points": ["WABS (Sinak)", "WAJO (Oksibil)", "WAJS (Senggi)"]
+        },
+        {
+          "aircraft_type": "EC725 Caracal",
+          "quantity_used": 1,
+          "route_sequence": ["WABS (Sinak)", "WAYL (Ilaga)", "WABS (Sinak)"],
+          "served_points": ["WAYL (Ilaga)"]
+        }
+      ],
+
+      "coa_operation": {
+        "timezone": "WIT (UTC+9)",
+        "planned_departure_wit": "2026-01-27 05:00",
+        "decision_point": {
+          "location": "WABS (Sinak)",
+          "go_conditions": ["Visibility Ilaga >= 6 km", "Wind Ilaga <= 5 m/s", "Threat tidak meningkat"],
+          "hold_window_min": [30, 60]
+        },
+        "delay_expected": "likely",
+        "delay_range_min_est": [30, 90],
+        "likely_events": [
+          "Kalau Ilaga drop visibility, COA ini ‘langsung berhenti’ untuk Ilaga—tanpa memaksa.",
+          "Biasanya lebih aman, tapi jadwal dan fuel plan harus siap untuk hold."
+        ]
+      },
+
+      "minimum_margin": {
+        "minimum_climb_margin_percent_est": 20,
+        "minimum_runway_margin_percent_est": 24,
+        "minimum_oge_margin_percent_est": 15,
+        "minimum_fuel_reserve_margin_percent_est": 22,
+        "critical_location": "Ilaga (WAYL)",
+        "critical_leg": "Sinak → Ilaga"
+      },
+
+      "hard_gate_summary": {
+        "hard_gate_overall_status": "PASS_WITH_DECISION_POINT",
+        "checks": {
+          "weather_check": {
+            "status": "CONDITIONAL",
+            "reason": "Ilaga itu ‘meja ujian’-nya. Kalau visibility turun dari 6 km, kita stop—bukan dipaksa jalan.",
+            "key_params_used": ["visibility_km", "policy min visibility"],
+            "confidence": "high"
+          },
+          "fuel_check": {
+            "status": "PASS_WITH_WARNING",
+            "reason": "Karena ada hold, reserve harus cukup. Kalau tidak dihitung, risiko ‘kepotong’ di fuel margin.",
+            "key_params_used": ["reserve policy", "loiter allowance"],
+            "confidence": "medium"
+          },
+          "oge_check": {
+            "status": "CONDITIONAL",
+            "reason": "Kalau payload/temperatur bikin hover margin tipis, ini harus jadi alasan untuk NO-GO Ilaga.",
+            "key_params_used": ["Caracal OGE ceiling 9500 ft"],
+            "confidence": "medium"
+          }
+        }
+      },
+
+      "score_breakdown": {
+        "objective_mode": "Payload Max",
+        "components": [
+          { "metric": "delivery_and_payload", "weight": 0.65, "value": 0.85 },
+          { "metric": "temporal", "weight": 0.15, "value": 0.52 },
+          { "metric": "safety", "weight": 0.1, "value": 0.86 },
+          { "metric": "environmental_risk", "weight": 0.05, "value": 0.78 },
+          { "metric": "fuel_efficiency", "weight": 0.05, "value": 0.40 }
+        ],
+        "final_score": 0.74
+      },
+
+      "tactical_layer": {
+        "hotspot_proximity_km_est": 9.5,
+        "summary_risk": "Risiko turun karena ada checkpoint. Kekurangannya: completion Ilaga bisa ketunda.",
+        "threat_level": "YELLOW"
+      },
+
+      "environmental_conditions": {
+        "temperature_range_c": "17 - 31",
+        "max_density_altitude_ft_est": 10500,
+        "avg_wind_kts_est": 6,
+        "visibility_km_min": 6,
+        "daylight_window_min_est": 240,
+        "weather_trend": "Pagi stabil, tapi pegunungan tetap punya kebiasaan berubah cepat. COA ini memang dibuat untuk menghadapi itu."
+      }
+    }
+  ],
+
+  "ranking": {
+    "method": "payload_completion_first_then_time_then_risk",
+    "ordered_recommendations": [
+      { "rank": 1, "name": "COA-1 One-Pass Max Uplift (Caracal runs the mountain network)", "rationale": "Paling kuat untuk ‘sekali jalan selesai’. Kekurangannya: Caracal lebih berat kerjanya." },
+      { "rank": 2, "name": "COA-2 Payload Max (Aggressive Split; fewer rotary stops)", "rationale": "Lebih ringan buat Caracal dan bisa lebih cepat, tapi Cessna masuk Sinak jadi lebih sensitif." },
+      { "rank": 3, "name": "COA-3 Payload Max with Contingency Hold (don’t force Ilaga)", "rationale": "Paling aman kalau Ilaga berubah cepat, tapi completion Ilaga bisa tertunda." }
+    ]
+  }
+}
