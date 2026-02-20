@@ -14,14 +14,7 @@ with open("alternate_airports.json") as f:
     alternate_data = json.load(f)
 
 
-OBJECTIVE_WEIGHTS = {
-    "delivery": 0.30,
-    "temporal": 0.20,
-    "fuel_efficiency": 0.20,
-    "environmental": 0.15,
-    "safety": 0.15
-}
-
+from scenario_config import get_scenario_config
 
 def delivery_score(delivered, planned):
     return min(1, delivered / planned) if planned > 0 else 0
@@ -38,8 +31,10 @@ def environmental_score(avg_risk):
 def safety_score(min_margin):
     return max(0, min_margin) if min_margin is not None else 0
 
-def aggregate_score(scores):
-    return sum(OBJECTIVE_WEIGHTS[k] * scores[k] for k in scores)
+def aggregate_score(scores, mission_data):
+    config = get_scenario_config(mission_data)
+    weights = config["weights"]
+    return sum(weights[k] * scores[k] for k in scores)
 
 
 def extract_min_margin(result):
@@ -182,8 +177,19 @@ def simulate_route(ac, evaluator, origin_key, route_sequence, initial_fuel, tota
         if leg_margin is not None:
             if min_margin is None or leg_margin < min_margin:
                 min_margin = leg_margin
+        
+        # ---- POLICY THRESHOLD CHECK (Unified Scenario Architecture) ----
+        config = get_scenario_config(mission_data)
+        thresholds = config["thresholds"]
+        
+        # Determine which threshold to check based on aircraft type/metric
+        required_margin = thresholds.get("runway_min", 0) if ac["type"] == "fixed" else thresholds.get("power_min", 0)
+        
+        if leg_margin is not None and leg_margin < required_margin:
+            mission_status = "FAIL_POLICY_THRESHOLD"
+            break
 
-        # ---- FAIL CHECK ----
+        # ---- PHYSICAL FAIL CHECK ----
         if result["hard_gate_overall_status"] == "FAIL":
             mission_status = "FAIL_HARD_GATE"
             break
@@ -255,7 +261,7 @@ for aircraft in mission_data["assigned_fleet"]:
                 "safety": safety_score(sim["min_margin"])
             }
 
-            final_score = aggregate_score(scores)
+            final_score = aggregate_score(scores, mission_data)
 
         else:
             scores = None
@@ -285,18 +291,25 @@ def generate_fleet_strategy(mission_data, fleet_results):
     
     strategies = []
     
-    # Check Single Fleet Capability
+    # Check Single Fleet Capability (Pick BEST score across all aircraft)
+    best_overall_route = None
+    best_ac_name = None
+    
     for ac_name, routes in fleet_results.items():
         valid_routes = [r for r in routes if r["simulation"]["mission_status"] == "PASS"]
         if valid_routes:
-            best_route = valid_routes[0]
-            if best_route["simulation"]["payload_delivered"] >= total_payload_needed:
-                strategies.append({
-                    "strategy": "Single Fleet",
-                    "aircraft": ac_name,
-                    "reason": f"{ac_name} mampu membawa seluruh payload ({total_payload_needed}kg) dalam satu sorty.",
-                    "allocation": {ac_name: "100% Payload"}
-                })
+            top_route = valid_routes[0]
+            if best_overall_route is None or top_route["final_score"] > best_overall_route["final_score"]:
+                best_overall_route = top_route
+                best_ac_name = ac_name
+                
+    if best_overall_route and best_overall_route["simulation"]["payload_delivered"] >= total_payload_needed:
+        strategies.append({
+            "strategy": "Single Fleet",
+            "aircraft": best_ac_name,
+            "reason": f"{best_ac_name} terpilih karena memberikan skor optimal ({best_overall_route['final_score']}) dan mampu membawa seluruh payload.",
+            "allocation": {best_ac_name: "100% Payload"}
+        })
     
     if not strategies:
          strategies.append({

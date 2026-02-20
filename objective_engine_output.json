@@ -1,41 +1,41 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "objective_scores": {
     "Cessna 208b": {
-      "scenario": "Emergency",
+      "scenario": "Custom",
       "weights": {
-        "safety": 0.35,
-        "temporal": 0.4,
-        "delivery": 0.05,
-        "fuel_efficiency": 0.05,
-        "environmental": 0.15
-      },
-      "components": {
-        "delivery": 1,
-        "temporal": 1.0,
-        "fuel_efficiency": 0.7187,
-        "environmental": 0.6117,
-        "safety": 0
-      },
-      "final_score": 0.5777
-    },
-    "EC725 Caracal": {
-      "scenario": "Emergency",
-      "weights": {
-        "safety": 0.35,
-        "temporal": 0.4,
-        "delivery": 0.05,
-        "fuel_efficiency": 0.05,
-        "environmental": 0.15
+        "delivery": 0.6,
+        "temporal": 0.1,
+        "fuel_efficiency": 0.1,
+        "environmental": 0.1,
+        "safety": 0.1
       },
       "components": {
         "delivery": 1,
         "temporal": 1.0,
         "fuel_efficiency": 0.4322,
-        "environmental": 0.5694,
-        "safety": 0.065
+        "environmental": 0.5868,
+        "safety": 0
       },
-      "final_score": 0.5798
+      "final_score": 0.8019
+    },
+    "EC725 Caracal": {
+      "scenario": "Custom",
+      "weights": {
+        "delivery": 0.6,
+        "temporal": 0.1,
+        "fuel_efficiency": 0.1,
+        "environmental": 0.1,
+        "safety": 0.1
+      },
+      "components": {
+        "delivery": 1,
+        "temporal": 1.0,
+        "fuel_efficiency": 0.182,
+        "environmental": 0.5354,
+        "safety": 0.052
+      },
+      "final_score": 0.7769
     }
   }
 }

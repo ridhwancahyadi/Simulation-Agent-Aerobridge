@@ -10,46 +10,12 @@ with open("payloads.json") as f:
     mission_data = json.load(f)
 
 
-OBJECTIVE_THRESHOLDS = {
+from scenario_config import get_scenario_config
 
-    "Delivery": {
-        "lambda_w_min": 0.95,
-        "climb_min": 0.05,
-        "runway_min": 0.00,
-        "power_min": 0.05,
-        "fuel_multiplier": 1.0
-    },
+def evaluate_objective(aircraft_name, aircraft_data, mission_data):
 
-    "Temporal": {
-        "lambda_w_range": (0.75, 0.90),
-        "climb_min": 0.10,
-        "runway_min": 0.05,
-        "power_min": 0.10,
-        "fuel_multiplier": 1.1
-    },
-
-    "Environmental": {
-        "lambda_w_max": 0.80,
-        "climb_min": 0.20,
-        "runway_min": 0.10,
-        "power_min": 0.20,
-        "fuel_multiplier": 1.2
-    },
-
-    "Safety": {
-        "lambda_w_max": 0.75,
-        "climb_min": 0.25,
-        "runway_min": 0.25,
-        "power_min": 0.25,
-        "fuel_multiplier": 1.25
-    }
-}
-
-
-
-def evaluate_objective(aircraft_name, aircraft_data, objective):
-
-    threshold = OBJECTIVE_THRESHOLDS[objective]
+    config = get_scenario_config(mission_data)
+    threshold = config["thresholds"]
 
     # Ambil minimum margin summary
     min_section = safety_data["safety_margin_analysis"][aircraft_name]["minimum_margin_section"]
@@ -82,7 +48,7 @@ def evaluate_objective(aircraft_name, aircraft_data, objective):
         status = "PASS"
 
     return {
-        "objective": objective,
+        "objective": scenario_id,
         "metric_evaluated": metric,
         "margin_value": value,
         "required_threshold": required,
@@ -90,8 +56,8 @@ def evaluate_objective(aircraft_name, aircraft_data, objective):
     }
 
 
-# Ambil objective dari mission
-selected_objective = mission_data.get("objective_mode", "Delivery")
+# Ambil scenario dari mission
+scenario_id = mission_data.get("scenario_id", "Balanced")
 
 final_output = {
     "mission_id": mission_data["mission_id"],
@@ -103,7 +69,7 @@ for aircraft_name, aircraft_result in hard_gate_data["hard_gate_summary"].items(
     evaluation = evaluate_objective(
         aircraft_name,
         aircraft_result,
-        selected_objective
+        mission_data
     )
 
     final_output["objective_threshold_evaluation"][aircraft_name] = evaluation

@@ -1,9 +1,9 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "aircraft_simulation": {
     "Cessna 208b": {
       "mission_status": "FAIL_RETURN_BASE",
-      "final_fuel_remaining": 279.18,
+      "final_fuel_remaining": 231.61,
       "legs": [
         {
           "from": "timika",
@@ -25,30 +25,41 @@
           "fuel_used": 91.13,
           "fuel_remaining": 279.18,
           "hard_gate_status": "PASS"
+        },
+        {
+          "diverted_to": "kenyam",
+          "fuel_used": 47.57
         }
       ]
     },
     "EC725 Caracal": {
       "mission_status": "FAIL_RETURN_BASE",
-      "final_fuel_remaining": 543.36,
+      "final_fuel_remaining": 611.44,
       "legs": [
         {
           "from": "timika",
           "to": "ilaga",
           "fuel_used": 339.88,
-          "fuel_remaining": 660.12,
+          "fuel_remaining": 1160.12,
           "hard_gate_status": "PASS"
         },
         {
           "from": "ilaga",
           "to": "sinak",
           "fuel_used": 74.93,
-          "fuel_remaining": 585.19,
+          "fuel_remaining": 1085.19,
           "hard_gate_status": "PASS"
         },
         {
-          "diverted_to": "mulia",
-          "fuel_used": 41.83
+          "from": "sinak",
+          "to": "wamena",
+          "fuel_used": 314.21,
+          "fuel_remaining": 770.98,
+          "hard_gate_status": "PASS"
+        },
+        {
+          "diverted_to": "kenyam",
+          "fuel_used": 159.54
         }
       ]
     }

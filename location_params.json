@@ -40,6 +40,26 @@
       "runway_length": 1305,
       "runway_heading_deg": 160,
       "weather": { "oat_c": 20, "qnh_hpa": 1007, "wind_speed_mps": 0, "visibility_km": 7 }
+    },
+    "oksibil": {
+      "name": "Oksibil",
+      "icao": "WAJO",
+      "elevation_ft": 3960,
+      "coords": [-4.908056, 140.613333],
+      "surface": "Aspal",
+      "runway_length": 1350,
+      "runway_heading_deg": 110,
+      "weather": { "oat_c": 24, "qnh_hpa": 1010, "wind_speed_mps": 2.1, "visibility_km": 8 }
+    },
+    "senggi": {
+      "name": "Senggi",
+      "icao": "WAJS",
+      "elevation_ft": 1000,
+      "coords": [-3.383333, 140.6],
+      "surface": "Rumput/Tanah",
+      "runway_length": 800,
+      "runway_heading_deg": 180,
+      "weather": { "oat_c": 30, "qnh_hpa": 1008, "wind_speed_mps": 1.5, "visibility_km": 5 }
     }
   }
 }

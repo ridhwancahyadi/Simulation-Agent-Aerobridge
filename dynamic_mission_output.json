@@ -1,13 +1,13 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "dynamic_mission_result": {
     "Cessna 208b": {
       "mission_status": "FAIL_HARD_GATE",
-      "final_fuel_remaining": 329.37,
-      "total_fuel_used_kg": 391.45,
-      "total_time_hr": 2.31,
-      "total_distance_nm": 265.72,
-      "total_payload_delivered_kg": 1000,
+      "final_fuel_remaining": 199.53,
+      "total_fuel_used_kg": 788.28,
+      "total_time_hr": 4.52,
+      "total_distance_nm": 574.37,
+      "total_payload_delivered_kg": 600,
       "legs": [
         {
           "from": "timika",
@@ -41,22 +41,44 @@
             "threat_level": "Low",
             "hotspot_active": false
           }
+        },
+        {
+          "from": "wamena",
+          "to": "oksibil",
+          "fuel_used": 144.62,
+          "fuel_remaining": 355.38,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
+        },
+        {
+          "from": "oksibil",
+          "to": "senggi",
+          "fuel_used": 122.38,
+          "fuel_remaining": 377.62,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
         }
       ]
     },
     "EC725 Caracal": {
       "mission_status": "PASS",
-      "final_fuel_remaining": 415.18,
-      "total_fuel_used_kg": 1313.83,
-      "total_time_hr": 2.1,
-      "total_distance_nm": 265.72,
-      "total_payload_delivered_kg": 1000,
+      "final_fuel_remaining": 454.09,
+      "total_fuel_used_kg": 2697.44,
+      "total_time_hr": 4.22,
+      "total_distance_nm": 574.37,
+      "total_payload_delivered_kg": 600,
       "legs": [
         {
           "from": "timika",
           "to": "ilaga",
           "fuel_used": 339.88,
-          "fuel_remaining": 660.12,
+          "fuel_remaining": 1160.12,
           "hard_gate_status": "PASS",
           "tactical": {
             "threat_level": "Low",
@@ -67,7 +89,7 @@
           "from": "ilaga",
           "to": "sinak",
           "fuel_used": 74.93,
-          "fuel_remaining": 925.07,
+          "fuel_remaining": 1425.07,
           "hard_gate_status": "PASS",
           "tactical": {
             "threat_level": "Low",
@@ -78,7 +100,29 @@
           "from": "sinak",
           "to": "wamena",
           "fuel_used": 314.21,
-          "fuel_remaining": 685.79,
+          "fuel_remaining": 1185.79,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
+        },
+        {
+          "from": "wamena",
+          "to": "oksibil",
+          "fuel_used": 501.44,
+          "fuel_remaining": 998.56,
+          "hard_gate_status": "PASS",
+          "tactical": {
+            "threat_level": "Low",
+            "hotspot_active": false
+          }
+        },
+        {
+          "from": "oksibil",
+          "to": "senggi",
+          "fuel_used": 421.08,
+          "fuel_remaining": 1078.92,
           "hard_gate_status": "PASS",
           "tactical": {
             "threat_level": "Low",

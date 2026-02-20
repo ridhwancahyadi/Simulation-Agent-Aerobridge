@@ -1,25 +1,45 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "origin": "timika",
-  "scenario_id": "Emergency",
-  "total_payload_kg": 1000,
+  "scenario_id": "Custom",
+  "total_payload_kg": 600,
   "deliveries": [
     {
       "destination": "ilaga",
-      "weight_kg": 200,
+      "weight_kg": 100,
       "priority": "High"
     },
     {
       "destination": "sinak",
-      "weight_kg": 300,
+      "weight_kg": 100,
       "priority": "High"
     },
     {
       "destination": "wamena",
-      "weight_kg": 500,
+      "weight_kg": 200,
       "priority": "Normal"
+    },
+    {
+      "destination": "oksibil",
+      "weight_kg": 100,
+      "priority": "High"
+    },
+    {
+      "destination": "senggi",
+      "weight_kg": 100,
+      "priority": "High"
     }
   ],
+  "custom_config": {
+    "weights": {
+      "delivery": 0.60,
+      "temporal": 0.10,
+      "fuel_efficiency": 0.10,
+      "environmental": 0.10,
+      "safety": 0.10
+    },
+    "policy_id": "Aggressive (Minimum Legal)"
+  },
   "assigned_fleet": [
     {
       "aircraft_name": "Cessna 208b",
@@ -29,7 +49,7 @@
     {
       "aircraft_name": "EC725 Caracal",
       "type": "Rotary Wing",
-      "fuel_kg": 1000
+      "fuel_kg": 1500
     }
   ]
 }

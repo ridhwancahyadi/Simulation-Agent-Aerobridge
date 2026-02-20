@@ -1,97 +1,6 @@
 {
-  "mission_data": "LOG-PAPUA-001",
+  "mission_data": "LOG-PAPUA-003",
   "agent_analysis": [
-    {
-      "aircraft_name": "Cessna 208b",
-      "aircraft_type": "Fixed Wing",
-      "route_overview": {
-        "route_sequence": [
-          "wamena",
-          "sinak",
-          "ilaga"
-        ],
-        "mission_status": "PASS",
-        "combined_score": 0.6122,
-        "key_constraints": [
-          "margin minimum",
-          "ketersediaan bahan bakar",
-          "kondisi cuaca"
-        ]
-      },
-      "departure_time_recommendations": [
-        {
-          "leg_index": 0,
-          "origin": "timika",
-          "destination": "wamena",
-          "recommended_window_local": {
-            "start_hhmm": "06:00",
-            "end_hhmm": "09:00"
-          },
-          "recommendation_text": "Disarankan berangkat pagi untuk menghindari high density altitude.",
-          "evidence": [],
-          "confidence": "high"
-        }
-      ],
-      "pilot_heads_up": [
-        {
-          "leg_index": 0,
-          "items": [
-            "Perhatikan fuel consumption untuk leg timika ke wamena",
-            "Cek visual weather rules di destinasi"
-          ],
-          "evidence": []
-        },
-        {
-          "leg_index": 1,
-          "items": [
-            "Perhatikan fuel consumption untuk leg wamena ke sinak",
-            "Cek visual weather rules di destinasi"
-          ],
-          "evidence": []
-        },
-        {
-          "leg_index": 2,
-          "items": [
-            "Perhatikan fuel consumption untuk leg sinak ke ilaga",
-            "Cek visual weather rules di destinasi"
-          ],
-          "evidence": []
-        }
-      ],
-      "mitigations_and_actions": [
-        {
-          "leg_index": 0,
-          "actions": [
-            "Konfirmasi cuaca",
-            "Monitor fuel flow"
-          ],
-          "evidence": []
-        },
-        {
-          "leg_index": 1,
-          "actions": [
-            "Konfirmasi cuaca",
-            "Monitor fuel flow"
-          ],
-          "evidence": []
-        },
-        {
-          "leg_index": 2,
-          "actions": [
-            "Konfirmasi cuaca",
-            "Monitor fuel flow"
-          ],
-          "evidence": []
-        }
-      ],
-      "contingencies": [
-        {
-          "trigger": "Jika fuel < reserve",
-          "action": "Divert ke alternate terdekat",
-          "evidence": []
-        }
-      ]
-    },
     {
       "aircraft_name": "EC725 Caracal",
       "aircraft_type": "Rotary Wing",
@@ -99,10 +8,12 @@
         "route_sequence": [
           "ilaga",
           "sinak",
-          "wamena"
+          "wamena",
+          "oksibil",
+          "senggi"
         ],
         "mission_status": "PASS",
-        "combined_score": 0.6072,
+        "combined_score": 0.7286,
         "key_constraints": [
           "margin minimum",
           "ketersediaan bahan bakar",
@@ -147,6 +58,22 @@
             "Cek visual weather rules di destinasi"
           ],
           "evidence": []
+        },
+        {
+          "leg_index": 3,
+          "items": [
+            "Perhatikan fuel consumption untuk leg wamena ke oksibil",
+            "Cek visual weather rules di destinasi"
+          ],
+          "evidence": []
+        },
+        {
+          "leg_index": 4,
+          "items": [
+            "Perhatikan fuel consumption untuk leg oksibil ke senggi",
+            "Cek visual weather rules di destinasi"
+          ],
+          "evidence": []
         }
       ],
       "mitigations_and_actions": [
@@ -173,6 +100,22 @@
             "Monitor fuel flow"
           ],
           "evidence": []
+        },
+        {
+          "leg_index": 3,
+          "actions": [
+            "Konfirmasi cuaca",
+            "Monitor fuel flow"
+          ],
+          "evidence": []
+        },
+        {
+          "leg_index": 4,
+          "actions": [
+            "Konfirmasi cuaca",
+            "Monitor fuel flow"
+          ],
+          "evidence": []
         }
       ],
       "contingencies": [
@@ -185,40 +128,6 @@
     }
   ],
   "top_candidates": [
-    {
-      "aircraft_name": "Cessna 208b",
-      "aircraft_type": "Fixed Wing",
-      "route": [
-        {
-          "destination": "wamena",
-          "weight_kg": 0
-        },
-        {
-          "destination": "sinak",
-          "weight_kg": 0
-        },
-        {
-          "destination": "ilaga",
-          "weight_kg": 0
-        }
-      ],
-      "simulation": {
-        "mission_status": "PASS",
-        "fuel_used": 308.53,
-        "time_hr": 1.783,
-        "distance_nm": 210.91,
-        "payload_delivered": 1000,
-        "min_margin": 0.0298
-      },
-      "score": {
-        "delivery": 1,
-        "temporal": 0.35932446999640677,
-        "fuel_efficiency": 0.7642163343599306,
-        "environmental": 0.5535054872533334,
-        "safety": 0.0298
-      },
-      "combined_score": 0.6122
-    },
     {
       "aircraft_name": "EC725 Caracal",
       "aircraft_type": "Rotary Wing",
@@ -234,49 +143,77 @@
         {
           "destination": "wamena",
           "weight_kg": 0
+        },
+        {
+          "destination": "oksibil",
+          "weight_kg": 0
+        },
+        {
+          "destination": "senggi",
+          "weight_kg": 0
         }
       ],
       "simulation": {
         "mission_status": "PASS",
-        "fuel_used": 729.02,
-        "time_hr": 1.166,
-        "distance_nm": 139.56,
-        "payload_delivered": 1000,
-        "min_margin": 0.108
+        "fuel_used": 1651.53,
+        "time_hr": 2.61,
+        "distance_nm": 341.78,
+        "payload_delivered": 600,
+        "min_margin": 0.095
       },
       "score": {
         "delivery": 1,
-        "temporal": 0.46168051708217916,
-        "fuel_efficiency": 0.5783623092850285,
-        "environmental": 0.5535054872533334,
-        "safety": 0.108
+        "temporal": 0.2770083102493075,
+        "fuel_efficiency": 0.2664854565562085,
+        "environmental": 0.647235155392,
+        "safety": 0.095
       },
-      "combined_score": 0.6072
+      "combined_score": 0.7286
     }
   ],
   "input_params": {
     "mission_data": {
-      "mission_id": "LOG-PAPUA-001",
+      "mission_id": "LOG-PAPUA-003",
       "origin": "timika",
-      "scenario_id": "Emergency",
-      "total_payload_kg": 1000,
+      "scenario_id": "Custom",
+      "total_payload_kg": 600,
       "deliveries": [
         {
           "destination": "ilaga",
-          "weight_kg": 200,
+          "weight_kg": 100,
           "priority": "High"
         },
         {
           "destination": "sinak",
-          "weight_kg": 300,
+          "weight_kg": 100,
           "priority": "High"
         },
         {
           "destination": "wamena",
-          "weight_kg": 500,
+          "weight_kg": 200,
           "priority": "Normal"
+        },
+        {
+          "destination": "oksibil",
+          "weight_kg": 100,
+          "priority": "High"
+        },
+        {
+          "destination": "senggi",
+          "weight_kg": 100,
+          "priority": "High"
         }
       ],
+      "custom_config": {
+        "weights": {
+          "delivery": 0.6,
+          "temporal": 0.1,
+          "fuel_efficiency": 0.1,
+          "environmental": 0.1,
+          "safety": 0.1
+        },
+        "policy_id": "Aggressive (Minimum Legal)"
+      },
       "assigned_fleet": [
         {
           "aircraft_name": "Cessna 208b",
@@ -286,7 +223,7 @@
         {
           "aircraft_name": "EC725 Caracal",
           "type": "Rotary Wing",
-          "fuel_kg": 1000
+          "fuel_kg": 1500
         }
       ]
     },
@@ -295,13 +232,13 @@
   },
   "summary_global": {
     "operational_status": "GO",
-    "total_payload_delivered": 1000,
-    "total_fuel_burn": 308.53,
-    "total_risk_index": 0.45,
+    "total_payload_delivered": 600,
+    "total_fuel_burn": 1651.53,
+    "total_risk_index": 0.35,
     "primary_reason": "Mission feasible",
     "selected_strategy": "Single Fleet",
-    "total_distance_nm": 210.91,
-    "total_mission_time_min": 107
+    "total_distance_nm": 341.78,
+    "total_mission_time_min": 157
   },
   "executive_summary": {
     "supporting_factors": [
@@ -317,10 +254,10 @@
   "aircraft_allocation": [
     {
       "strategy": "Single Fleet",
-      "aircraft": "Cessna 208b",
-      "reason": "Cessna 208b mampu membawa seluruh payload (1000kg) dalam satu sorty.",
+      "aircraft": "EC725 Caracal",
+      "reason": "EC725 Caracal terpilih karena memberikan skor optimal (0.7286) dan mampu membawa seluruh payload.",
       "allocation": {
-        "Cessna 208b": "100% Payload"
+        "EC725 Caracal": "100% Payload"
       }
     }
   ]

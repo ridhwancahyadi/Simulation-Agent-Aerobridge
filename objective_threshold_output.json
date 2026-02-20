@@ -1,17 +1,17 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "objective_threshold_evaluation": {
     "Cessna 208b": {
-      "objective": "Delivery",
+      "objective": "Custom",
       "metric_evaluated": "runway_feasibility",
-      "margin_value": -0.2126,
-      "required_threshold": 0.0,
+      "margin_value": -0.1133,
+      "required_threshold": 0.02,
       "status": "FAIL"
     },
     "EC725 Caracal": {
-      "objective": "Delivery",
+      "objective": "Custom",
       "metric_evaluated": "oge_feasibility",
-      "margin_value": 0.065,
+      "margin_value": 0.052,
       "required_threshold": null,
       "status": "PASS"
     }

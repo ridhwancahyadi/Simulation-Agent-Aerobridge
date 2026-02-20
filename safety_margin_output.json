@@ -1,24 +1,36 @@
 {
-  "mission_id": "LOG-PAPUA-001",
+  "mission_id": "LOG-PAPUA-003",
   "safety_margin_analysis": {
     "Cessna 208b": {
       "minimum_margin_section": {
         "metric": "runway_feasibility",
         "location": "ilaga",
-        "value": -0.2126
+        "value": -0.1133
       },
       "highest_tactical_risk_section": {
-        "location": "wamena",
-        "environmental_risk": 0.4585,
-        "temporal_stress": 0.4974,
-        "tactical_risk_index": 0.4741
+        "location": "oksibil",
+        "environmental_risk": 0.258,
+        "temporal_stress": 0.8337,
+        "tactical_risk_index": 0.4883
       },
       "all_tactical_sections": [
+        {
+          "location": "oksibil",
+          "environmental_risk": 0.258,
+          "temporal_stress": 0.8337,
+          "tactical_risk_index": 0.4883
+        },
         {
           "location": "wamena",
           "environmental_risk": 0.4585,
           "temporal_stress": 0.4974,
           "tactical_risk_index": 0.4741
+        },
+        {
+          "location": "senggi",
+          "environmental_risk": 0.1293,
+          "temporal_stress": 0.8386,
+          "tactical_risk_index": 0.413
         },
         {
           "location": "ilaga",
@@ -38,20 +50,32 @@
       "minimum_margin_section": {
         "metric": "oge_feasibility",
         "location": "ilaga",
-        "value": 0.065
+        "value": 0.052
       },
       "highest_tactical_risk_section": {
-        "location": "wamena",
-        "environmental_risk": 0.4916,
-        "temporal_stress": 0.5701,
-        "tactical_risk_index": 0.523
+        "location": "oksibil",
+        "environmental_risk": 0.2823,
+        "temporal_stress": 0.9653,
+        "tactical_risk_index": 0.5555
       },
       "all_tactical_sections": [
+        {
+          "location": "oksibil",
+          "environmental_risk": 0.2823,
+          "temporal_stress": 0.9653,
+          "tactical_risk_index": 0.5555
+        },
         {
           "location": "wamena",
           "environmental_risk": 0.4916,
           "temporal_stress": 0.5701,
           "tactical_risk_index": 0.523
+        },
+        {
+          "location": "senggi",
+          "environmental_risk": 0.1421,
+          "temporal_stress": 0.9766,
+          "tactical_risk_index": 0.4759
         },
         {
           "location": "ilaga",
